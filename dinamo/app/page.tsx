@@ -48,10 +48,14 @@ export default function Home() {
             <div className="flex max-md:flex-col justify-center gap-16 px-16 max-lg:px-5 max-sm:px-3 py-5 bg-white">
                <div className="md:w-1/2 flex flex-col items-center">
                   <div className="text-center">
-                     <h3 className="text-2xl max-md:text-xl font-semibold">MATCHES</h3>
+                     <h3 className="text-2xl max-md:text-xl font-semibold">
+                        MATCHES
+                     </h3>
                      <p className="font-medium max-md:text-xs">Serie A</p>
                      <p className="font-semibold max-md:text-sm">Matchday 1</p>
-                     <p className="text-sm max-md:text-xs">23 August 2025 23:45</p>
+                     <p className="text-sm max-md:text-xs">
+                        23 August 2025 23:45
+                     </p>
                      <p className="text-sm max-md:text-xs">San Siro Stadium</p>
                   </div>
                   <div className="flex items-center justify-between w-full my-5">
@@ -81,7 +85,10 @@ export default function Home() {
                         </p>
                      </div>
                   </div>
-                  <Link href={"#"} className="mt-auto max-md:text-sm underline underline-offset-1 text-[#0474D8]">
+                  <Link
+                     href={"#"}
+                     className="mt-auto max-md:text-sm underline underline-offset-1 text-[#0474D8]"
+                  >
                      See all matches
                   </Link>
                </div>
@@ -120,7 +127,10 @@ export default function Home() {
                         ))}
                      </TableBody>
                   </Table>
-                  <Link href={"#"} className="mt-auto max-md:text-sm underline underline-offset-1 text-[#0474D8]">
+                  <Link
+                     href={"#"}
+                     className="mt-auto max-md:text-sm underline underline-offset-1 text-[#0474D8]"
+                  >
                      See all standings
                   </Link>
                </div>
@@ -245,9 +255,119 @@ export default function Home() {
                         </div>
                      </div>
                   </div>
-                  <div className="">
-                     <div className=""></div>
-                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div className="mt-32 mb-20 bg-white">
+            <div className="custom-container py-10">
+               <div className="flex items-end gap-5">
+                  <h2 className="text-4xl max-md:text-2xl font-semibold">
+                     Videos
+                  </h2>
+                  <hr className="bg-black h-7 w-[1px]" />
+                  <Link
+                     href={"#"}
+                     className="text-xl max-md:text-base text-[#0474D8]"
+                  >
+                     Watch More
+                  </Link>
+               </div>
+
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+                  {/* Главный блок на всю ширину на мобилке */}
+                  <Link
+                     href={"#"}
+                     className="sm:col-span-2 sm:row-span-2 group overflow-hidden"
+                  >
+                     <div className="h-[60vw] md:h-[60%] overflow-hidden">
+                        <Image
+                           className="w-full h-full object-cover transition-transform duration-[1.5s] ease-in-out group-hover:scale-110"
+                           src={"/hero.png"}
+                           width={1000}
+                           height={1000}
+                           alt="video"
+                        />
+                     </div>
+                     <div className="bg-[#0474D8] h-full py-6 px-4 md:py-10 md:px-3">
+                        <p className="text-white text-xs md:text-sm">
+                           13 July 2025
+                        </p>
+                        <h3 className="text-white text-xl md:text-3xl max-sm:text-lg font-semibold leading-snug mt-2 md:mt-3">
+                           Away Kit 2025/26: the backstage
+                        </h3>
+                     </div>
+                  </Link>
+
+                  {/* Остальные карточки — в колонку на мобилке, в сетку на десктопе */}
+                  {[0, 1, 2, 3].map((item: number) => (
+                     <Link
+                        href={"#"}
+                        key={item}
+                        className="group overflow-hidden"
+                     >
+                        <div className="h-[60vw] sm:h-[60%] overflow-hidden">
+                           <Image
+                              className="w-full h-full object-cover transition-transform duration-[1.5s] ease-in-out group-hover:scale-110"
+                              src={"/hero.png"}
+                              width={1000}
+                              height={1000}
+                              alt="video"
+                           />
+                        </div>
+                        <div className="bg-[#0474D8] h-full py-4 px-4 md:py-2 md:px-3">
+                           <p className="text-white text-xs">13 July 2025</p>
+                           <h3 className="text-white text-lg md:text-lg font-semibold leading-5 mt-1">
+                              Away Kit 2025/26: the backstage
+                           </h3>
+                        </div>
+                     </Link>
+                  ))}
+               </div>
+            </div>
+
+            <div className="custom-container mt-10 pb-10">
+               <div className="flex items-end gap-5">
+                  <h2 className="text-4xl max-md:text-2xl font-semibold">
+                     Photo Galleries
+                  </h2>
+                  <hr className="bg-black h-7 w-[1px]" />
+                  <Link
+                     href={"#"}
+                     className="text-xl max-md:text-base text-[#0474D8]"
+                  >
+                     See More
+                  </Link>
+               </div>
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+                  {[...Array(4)].map((_, i) => (
+                     <Link
+                        key={i}
+                        href={"#"}
+                        className="relative h-[250px] sm:h-[250px] lg:h-[280px] overflow-hidden group"
+                     >
+                        {/* Фон */}
+                        <Image
+                           src="/hero.png"
+                           alt={`section bg ${i}`}
+                           fill
+                           className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                        />
+
+                        {/* Затемнение */}
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+
+                        {/* Текст */}
+                        <div className="absolute inset-0 flex flex-col items-start justify-end px-5 py-10 z-10">
+                           <p className="text-white text-xs sm:text-sm">
+                              13 July 2025
+                           </p>
+                           <h3 className="text-white text-xl font-semibold mt-1">
+                              History of the Academy
+                           </h3>
+                        </div>
+                     </Link>
+                  ))}
                </div>
             </div>
          </div>
@@ -256,7 +376,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-center mb-10">
                Dinamo News
             </h2>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-2">
                {[0, 1, 2, 3, 4, 5].map((item: number) => (
                   <div key={item} className="border border-[#efefef]">
                      <div className="">
