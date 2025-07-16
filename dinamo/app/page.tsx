@@ -17,6 +17,9 @@ import {
    CarouselNext,
    CarouselPrevious,
 } from "@/components/ui/carousel";
+import { MdCalendarMonth } from "react-icons/md";
+import { CiLocationOn } from "react-icons/ci";
+import { HiOutlineLocationMarker } from "react-icons/hi";
 
 export default function Home() {
    return (
@@ -138,21 +141,74 @@ export default function Home() {
          </div>
 
          <div className="custom-container">
-            <h2>Next Events</h2>
+            <h2 className="text-4xl max-md:text-2xl font-semibold mb-10 max-md:mb-5">
+               Next Events
+            </h2>
 
-            <div className="">
-               <Carousel>
-                  <CarouselContent className="">
-                     {[0, 1, 2, 3, 4, 5].map((item: number) => (
-                        <CarouselItem key={item} className="basis-1/3">
-                           {item}
-                        </CarouselItem>
-                     ))}
-                  </CarouselContent>
-                  {/* <CarouselPrevious />
-                  <CarouselNext /> */}
-               </Carousel>
-            </div>
+            <Carousel>
+               <CarouselContent className="-ml-4">
+                  {[0, 1, 2, 3, 4, 5].map((item: number) => (
+                     <CarouselItem
+                        key={item}
+                        className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                     >
+                        <div className="bg-[#0f2145] rounded-2xl">
+                           <div className="p-10">
+                              <div className="flex items-center justify-between text-white">
+                                 <div className="text-center">
+                                    <Image
+                                       className="w-12 h-12 mx-auto mb-2"
+                                       src={`/logo.png`}
+                                       width={48}
+                                       height={48}
+                                       alt="news"
+                                    />
+                                    <p>Dinamo</p>
+                                 </div>
+                                 <p className="text-lg font-bold">VS</p>
+                                 <div className="text-center">
+                                    <Image
+                                       className="w-12 h-12 mx-auto mb-2"
+                                       src={`/logo.png`}
+                                       width={48}
+                                       height={48}
+                                       alt="news"
+                                    />
+                                    <p>Dinamo</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div className="bg-white p-5 rounded-xl">
+                              <p className="text-sm mb-2">
+                                 Futbol primer Equipo
+                              </p>
+                              <p className="text-2xl font-semibold mb-1">
+                                 La Liga
+                              </p>
+                              <p className="text font-semibold mb-2">
+                                 Matchday {item + 1}
+                              </p>
+                              <div className="flex items-center gap-2">
+                                 <MdCalendarMonth className="text-gray-400 text-xl" />
+                                 <p className="text-gray-700 font-medium">
+                                    Sunday, Aug 24, 9:30 PM h
+                                 </p>
+                              </div>
+                              <div className="flex items-center gap-2 mt-1">
+                                 <HiOutlineLocationMarker className="text-gray-400 text-xl" />
+                                 <p className="text-gray-700 font-medium">
+                                    Estadio Santiago Bernabeu
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </CarouselItem>
+                  ))}
+               </CarouselContent>
+
+               <CarouselPrevious className="max-xl:-left-4 max-sm:hidden" />
+               <CarouselNext className="max-xl:-right-4 max-sm:hidden" />
+            </Carousel>
          </div>
 
          <div className="custom-container mt-20">
@@ -369,39 +425,6 @@ export default function Home() {
                      </Link>
                   ))}
                </div>
-            </div>
-         </div>
-
-         <div className="custom-container mt-20">
-            <h2 className="text-4xl font-bold text-center mb-10">
-               Dinamo News
-            </h2>
-            <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-2">
-               {[0, 1, 2, 3, 4, 5].map((item: number) => (
-                  <div key={item} className="border border-[#efefef]">
-                     <div className="">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={100}
-                           height={100}
-                           alt="img"
-                           priority
-                        />
-                     </div>
-                     <div className="p-2">
-                        <h3 className="text-2xl font-semibold text-center mb-10">
-                           A very blaugrana Euro 2025 begins
-                        </h3>
-                        <div className="flex items-center justify-between">
-                           <p className="font-bold text-xs text-red-600">
-                              CLUB
-                           </p>
-                           <p className=" text-xs">4 hrs ago</p>
-                        </div>
-                     </div>
-                  </div>
-               ))}
             </div>
          </div>
 
