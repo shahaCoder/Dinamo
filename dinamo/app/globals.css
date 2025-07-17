@@ -225,3 +225,7 @@ body {
       @apply bg-background text-foreground;
    }
 }
+
+.instagram-gradient {
+  background: linear-gradient(200deg, #833ab4, #fd1d1d, #fcb045);
+}

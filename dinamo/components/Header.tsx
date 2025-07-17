@@ -58,7 +58,7 @@ const Header = () => {
             <div className="flex items-center gap-7 max-lg:gap-5">
                <div className="relative w-20 h-16">
                   <Link
-                     href={"#"}
+                     href={"/"}
                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   >
                      <Image
