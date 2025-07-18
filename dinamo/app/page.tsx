@@ -17,6 +17,11 @@ import {
    CarouselNext,
    CarouselPrevious,
 } from "@/components/ui/carousel";
+import { MdCalendarMonth } from "react-icons/md";
+import { CiLocationOn } from "react-icons/ci";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { IoLogoFacebook } from "react-icons/io";
+import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 
 export default function Home() {
    return (
@@ -137,22 +142,99 @@ export default function Home() {
             </div>
          </div>
 
-         <div className="custom-container">
-            <h2>Next Events</h2>
-
-            <div className="">
-               <Carousel>
-                  <CarouselContent className="">
-                     {[0, 1, 2, 3, 4, 5].map((item: number) => (
-                        <CarouselItem key={item} className="basis-1/3">
-                           {item}
-                        </CarouselItem>
-                     ))}
-                  </CarouselContent>
-                  {/* <CarouselPrevious />
-                  <CarouselNext /> */}
-               </Carousel>
+         <section className="bg-[#0f2145] text-white py-12 px-4 sm:px-8 md:px-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
+               ⭐ Лучший игрок месяца
+            </h2>
+            <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center bg-yellow-600 p-6 rounded-2xl shadow-lg gap-6">
+               <Image
+                  src="/players/messi.jpg"
+                  alt="Лучший игрок"
+                  width={180}
+                  height={180}
+                  className="rounded-full border-4 border-yellow-400"
+               />
+               <div className="text-center md:text-left">
+                  <h3 className="text-2xl font-semibold">Лионель Месси</h3>
+                  <p className="text-white font-medium">Нападающий</p>
+                  <p className="mt-3 text-zinc-300">
+                     🔥 Голы: <span className="font-bold">5</span> <br />
+                     🎯 Ассисты: <span className="font-bold">3</span> <br />
+                     🏟 Матчи: <span className="font-bold">4</span>
+                  </p>
+               </div>
             </div>
+         </section>
+
+         <div className="custom-container mt-20">
+            <h2 className="text-4xl max-md:text-2xl font-semibold mb-10 max-md:mb-5">
+               Next Events
+            </h2>
+
+            <Carousel>
+               <CarouselContent className="-ml-4">
+                  {[0, 1, 2, 3, 4, 5].map((item: number) => (
+                     <CarouselItem
+                        key={item}
+                        className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                     >
+                        <div className="bg-[#0f2145] rounded-2xl">
+                           <div className="p-10">
+                              <div className="flex items-center justify-between text-white">
+                                 <div className="text-center">
+                                    <Image
+                                       className="w-12 h-12 mx-auto mb-2"
+                                       src={`/logo.png`}
+                                       width={48}
+                                       height={48}
+                                       alt="news"
+                                    />
+                                    <p>Dinamo</p>
+                                 </div>
+                                 <p className="text-lg font-bold">VS</p>
+                                 <div className="text-center">
+                                    <Image
+                                       className="w-12 h-12 mx-auto mb-2"
+                                       src={`/logo.png`}
+                                       width={48}
+                                       height={48}
+                                       alt="news"
+                                    />
+                                    <p>Dinamo</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div className="bg-white p-5 rounded-xl">
+                              <p className="text-sm mb-2">
+                                 Futbol primer Equipo
+                              </p>
+                              <p className="text-2xl font-semibold mb-1">
+                                 La Liga
+                              </p>
+                              <p className="text font-semibold mb-2">
+                                 Matchday {item + 1}
+                              </p>
+                              <div className="flex items-center gap-2">
+                                 <MdCalendarMonth className="text-gray-400 text-xl" />
+                                 <p className="text-gray-700 font-medium">
+                                    Sunday, Aug 24, 9:30 PM h
+                                 </p>
+                              </div>
+                              <div className="flex items-center gap-2 mt-1">
+                                 <HiOutlineLocationMarker className="text-gray-400 text-xl" />
+                                 <p className="text-gray-700 font-medium">
+                                    Estadio Santiago Bernabeu
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </CarouselItem>
+                  ))}
+               </CarouselContent>
+
+               <CarouselPrevious className="max-xl:-left-4 max-sm:hidden" />
+               <CarouselNext className="max-xl:-right-4 max-sm:hidden" />
+            </Carousel>
          </div>
 
          <div className="custom-container mt-20">
@@ -372,40 +454,219 @@ export default function Home() {
             </div>
          </div>
 
-         <div className="custom-container mt-20">
-            <h2 className="text-4xl font-bold text-center mb-10">
-               Dinamo News
-            </h2>
-            <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-2">
-               {[0, 1, 2, 3, 4, 5].map((item: number) => (
-                  <div key={item} className="border border-[#efefef]">
-                     <div className="">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={100}
-                           height={100}
-                           alt="img"
-                           priority
-                        />
-                     </div>
-                     <div className="p-2">
-                        <h3 className="text-2xl font-semibold text-center mb-10">
-                           A very blaugrana Euro 2025 begins
-                        </h3>
-                        <div className="flex items-center justify-between">
-                           <p className="font-bold text-xs text-red-600">
-                              CLUB
-                           </p>
-                           <p className=" text-xs">4 hrs ago</p>
-                        </div>
-                     </div>
-                  </div>
-               ))}
+         <div className="bg-[#0f2145] mt-10 py-10">
+            <div className="custom-container relative">
+               <h2 className="text-yellow-500">Main Partners</h2>
+               <div className="bg-yellow-600 w-0.5 h-full absolute z-20 top-10 left-9 max-lg:left-7 max-md:left-5" />
+               <div className="flex items-center justify-around mt-5">
+                  <Link href={"#"}>
+                     <Image
+                        className="w-72 max-lg:w-52 max-md:w-36"
+                        src={
+                           "https://fcbarcelona-static-files.s3.amazonaws.com/sponsors/nike--white.svg"
+                        }
+                        width={1000}
+                        height={1000}
+                        alt="logo"
+                     />
+                  </Link>
+                  <Link href={"#"}>
+                     <Image
+                        className="w-72 max-lg:w-52 max-md:w-36"
+                        src={
+                           "https://fcbarcelona-static-files.s3.amazonaws.com/sponsors/nike--white.svg"
+                        }
+                        width={1000}
+                        height={1000}
+                        alt="logo"
+                     />
+                  </Link>
+               </div>
             </div>
          </div>
 
-         <div className="custom-container mt-20"></div>
+         <div className="py-20 bg-[#0f2145]">
+            <div className="custom-container">
+               <h3 className="text-white text-xl font-semibold text-center">
+                  Follow FC Dinamo on social media
+               </h3>
+               <div className="flex flex-wrap justify-center gap-2 mt-5">
+                  <Link href={"#"} className="bg-[#3b5998] p-3 pr-20">
+                     <IoLogoFacebook className="text-[35px] mb-3" />
+                     <p className="text-white text-xs font-medium">FC Dinamo</p>
+                     <p className="text-white text-xs font-semibold">
+                        @fcdinamo
+                     </p>
+                  </Link>
+
+                  <Link href={"#"} className="p-3 pr-20 instagram-gradient">
+                     <FaInstagram className="text-[35px] mb-3" />
+                     <p className="text-white text-xs font-medium">FC Dinamo</p>
+                     <p className="text-white text-xs font-semibold">
+                        @fcdinamo
+                     </p>
+                  </Link>
+                  <Link href={"#"} className="p-3 pr-20 bg-black">
+                     <FaTiktok className="text-[35px] mb-3 text-white" />
+                     <p className="text-white text-xs font-medium">FC Dinamo</p>
+                     <p className="text-white text-xs font-semibold">
+                        @fcdinamo
+                     </p>
+                  </Link>
+                  <Link href={"#"} className="p-3 pr-20 bg-[#b00]">
+                     <FaYoutube className="text-[35px] mb-3 text-white" />
+                     <p className="text-white text-xs font-medium">FC Dinamo</p>
+                     <p className="text-white text-xs font-semibold">
+                        @fcdinamo
+                     </p>
+                  </Link>
+               </div>
+            </div>
+         </div>
+
+         <footer className="bg-[#0f2145] text-white py-10 px-4 md:px-16">
+            <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+               <div>
+                  <Link href={"/"}>
+                     <Image
+                        className="w-20"
+                        src="/logo.png"
+                        alt="Logo"
+                        width={100}
+                        height={100}
+                        priority
+                     />
+                  </Link>
+                  <h2 className="text-2xl font-bold mt-3 text-white">
+                     FC Dinamo
+                  </h2>
+                  <p className="mt-2 text-gray-400"></p>
+               </div>
+
+               {/* Быстрые ссылки */}
+               <div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                     Навигация
+                  </h3>
+                  <ul className="space-y-2">
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Главная
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Команда
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Матчи
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Клуб
+                        </Link>
+                     </li>
+                  </ul>
+               </div>
+               <div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                     Навигация
+                  </h3>
+                  <ul className="space-y-2">
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Главная
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Команда
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Матчи
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Клуб
+                        </Link>
+                     </li>
+                  </ul>
+               </div>
+               <div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                     Навигация
+                  </h3>
+                  <ul className="space-y-2">
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Главная
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Команда
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Матчи
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="#"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Клуб
+                        </Link>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+
+            <div className="mt-10 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
+               © {new Date().getFullYear()} FC Dinamo. Все права защищены.
+            </div>
+         </footer>
       </div>
    );
 }
