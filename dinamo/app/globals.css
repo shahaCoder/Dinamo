@@ -227,5 +227,20 @@ body {
 }
 
 .instagram-gradient {
-  background: linear-gradient(200deg, #833ab4, #fd1d1d, #fcb045);
+   background: linear-gradient(200deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.playrCard {
+   background-image: linear-gradient(
+      0deg,
+      rgba(8, 14, 31, 0.9) 20%,
+      rgba(8, 14, 31, 0.4) 45%,
+      rgba(24, 23, 51, 0) 65%
+   );
+   background-image: linear-gradient(
+      0deg,
+      #080e1fe6 20%,
+      rgba(8, 14, 31, 0.4) 40%,
+      rgba(24, 23, 51, 0) 55%
+   );
 }

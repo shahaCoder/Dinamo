@@ -54,22 +54,45 @@ const Header = () => {
                </Select>
             </div>
          </div>
-         <div className="custom-container flex items-center justify-between relative">
-            <div className="flex items-center gap-7 max-lg:gap-5">
-               <div className="relative w-20 h-16">
-                  <Link
-                     href={"/"}
-                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  >
-                     <Image
-                        className="w-80 scale-200"
-                        src="/logo.png"
-                        alt="Logo"
-                        width={100}
-                        height={100}
-                        priority
-                     />
-                  </Link>
+
+         <div className="bg-[#0f2145]">
+            <div className="custom-container flex items-center justify-between relative text-white">
+               <div className="flex items-center gap-7 max-lg:gap-5">
+                  <div className="relative w-20 h-16">
+                     <Link
+                        href={"/"}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                     >
+                        <Image
+                           className="w-80 scale-200"
+                           src="/logo.png"
+                           alt="Logo"
+                           width={100}
+                           height={100}
+                           priority
+                        />
+                     </Link>
+                  </div>
+
+                  <nav className="max-md:hidden">
+                     <ul className="flex items-center gap-10 max-lg:gap-5">
+                        <li>
+                           <Link href="/players" className="font-semibold">
+                              Players
+                           </Link>
+                        </li>
+                        <li>
+                           <Link href="/players" className="font-semibold">
+                              Players
+                           </Link>
+                        </li>
+                        <li>
+                           <Link href="/players" className="font-semibold">
+                              Players
+                           </Link>
+                        </li>
+                     </ul>
+                  </nav>
                </div>
 
                <nav className="max-md:hidden">
@@ -91,31 +114,12 @@ const Header = () => {
                      </li>
                   </ul>
                </nav>
+               <button className="max-md:block hidden bg-[#0474D8] p-2 rounded-full">
+                  <IoMenu className="text-[20px] text-white" />
+               </button>
             </div>
-
-            <nav className="max-md:hidden">
-               <ul className="flex items-center gap-10 max-lg:gap-5">
-                  <li>
-                     <Link href="/players" className="font-semibold">
-                        Players
-                     </Link>
-                  </li>
-                  <li>
-                     <Link href="/players" className="font-semibold">
-                        Players
-                     </Link>
-                  </li>
-                  <li>
-                     <Link href="/players" className="font-semibold">
-                        Players
-                     </Link>
-                  </li>
-               </ul>
-            </nav>
-            <button className="max-md:block hidden bg-[#0474D8] p-2 rounded-full">
-               <IoMenu className="text-[20px] text-white" />
-            </button>
          </div>
+
          <div className="w-full h-2 max-lg:h-1 bg-gradient-to-r from-[#0474D8] from-40% to-60% to-white"></div>
       </header>
    );
