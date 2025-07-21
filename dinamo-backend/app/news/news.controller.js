@@ -2,38 +2,61 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 // Создание новости
-const postNews = async (req, res) => {
-  try {
-    const { title, content, imageUrl } = req.body;
 
-    const newNews = await prisma.news.create({
-      data: {
-        title,
-        content,
-        imageUrl,
-      },
-    });
-
-    res.status(201).json(newNews);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Ошибка при создании новости' });
-  }
-};
-
-// Получение всех новостей с комментариями
 const getAllNews = async (req, res) => {
+  const locale = req.query.locale || 'uz'
   try {
     const newsList = await prisma.news.findMany({
       include: {
         comments: true, // Включаем комментарии
+        translations: {
+          where: { locale },
+          select: {
+            title: true,
+            content: true
+          }
+        }
       },
     });
 
-    res.json(newsList);
+    const transformed = newsList.map(news => {
+      const translation = news.translations[0] || {}
+      return {
+        ...news,
+        ...translation,
+        translations: undefined
+      }  
+    })
+    res.json(transformed);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Ошибка при получении новостей' });
+  }
+};
+const postNews = async (req, res) => {
+  try {
+    const { imageUrl, translations = [] } = req.body;
+
+    if (!translations.length) {
+  return res.status(400).json({ error: 'Не переданы переводы' });
+}
+
+    const newNews = await prisma.news.create({
+      data: {
+        imageUrl,
+        translations: {
+          create: translations.map(t => ({
+            locale: t.locale,
+            title: t.title,
+            content: t.content
+          }))
+        }
+      },
+    });
+    res.json(newNews);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Ошибка при создании новости' });
   }
 };
 
@@ -68,40 +91,66 @@ const deleteNews = async (req, res) => {
 
 const updateNews = async (req, res) => {
   try {
-    const id = parseInt(req.params.id, 10)
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id)) return res.status(400).json({ error: 'Некорректный ID' });
 
-    const news = await prisma.upcomingMatch.findUnique({
+    const news = await prisma.news.findUnique({  
       where: { id },
     });
 
-    if(!news){
-      return res.status(404).json({message: 'Дaнная новость удалена или не существует'})
+    if (!news) {
+      return res.status(404).json({ message: 'Данная новость удалена или не существует' });
     }
 
-    const {title, content, imageUrl} = req.body
-    const newsData = {title, content, imageUrl}
-    const data = {}
-    Object.keys(newsData)?.forEach(element => {
-      if(newsData[element] !== undefined){
-        data[element] = newsData[element]
-      }
+    const { title, content, imageUrl, translations = [] } = req.body;
+    const newsData = { imageUrl };
+
+    const cleanData = Object.fromEntries(
+      Object.entries(newsData).filter(([_, v]) => v !== undefined)
+    );
+
+    const updatedNews = await prisma.news.update({  
+      where: { id },
+      data: cleanData,
     });
-    // if(title) data.title = title
-    // if(content) data.content = content
-    // if(imageUrl) data.imageUrl = imageUrl
 
-    const updatedNews = await prisma.news.update(({
-      where: { id }, 
-      data: data
-    }))
-    res.json({ message: 'Матч успешно обновлен', updatedNews });
+    for (const t of translations) {
+      if (!t.locale) continue;
 
+      const existingTranslation = await prisma.newsTranslation.findFirst({
+        where: {
+          newsId: id,
+          locale: t.locale,
+        },
+      });
+
+      if (existingTranslation) {
+        await prisma.newsTranslation.update({
+          where: { id: existingTranslation.id },
+          data: {
+            ...(t.title && { title: t.title }),
+            ...(t.content && { content: t.content }),
+          },
+        });
+      } else {
+        await prisma.newsTranslation.create({
+          data: {
+            locale: t.locale,
+            title: t.title || '',
+            content: t.content || '',
+            news: { connect: { id } },
+          },
+        });
+      }
+    }
+
+    res.json({ message: 'Новость успешно обновлена', updatedNews });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Ошибка при обновлении новости' });
-    
   }
-}
+};
+
 
 
 module.exports = { postNews, getAllNews, deleteNews, updateNews };
