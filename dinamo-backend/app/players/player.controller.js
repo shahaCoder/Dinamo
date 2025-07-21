@@ -13,7 +13,7 @@ const getPlayers = async (req, res) => {
 						firstName: true,
 						lastName: true,
 						position: true,
-						nationality: true,
+						nationality: true
 					},
 				},
 			},
@@ -152,7 +152,7 @@ const editPlayer = async (req, res) => {
 			const existingTranslation = await prisma.playerTranslation.findFirst({
 				where: {
 					playerId: id,
-					locale: t.locale,
+					locale: t.locale
 				},
 			})
 
@@ -174,7 +174,7 @@ const editPlayer = async (req, res) => {
 						lastName: t.lastName || '',
 						position: t.position || '',
 						nationality: t.nationality || '',
-						player: { connect: { id } },
+						player: { connect: { id } }
 					},
 				})
 			}
