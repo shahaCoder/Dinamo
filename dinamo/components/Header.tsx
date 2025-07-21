@@ -77,8 +77,8 @@ const Header = () => {
                   <nav className="max-md:hidden">
                      <ul className="flex items-center gap-10 max-lg:gap-5">
                         <li>
-                           <Link href="/players" className="font-semibold">
-                              Players
+                           <Link href="/" className="font-semibold">
+                              Home
                            </Link>
                         </li>
                         <li>
@@ -120,7 +120,7 @@ const Header = () => {
             </div>
          </div>
 
-         <div className="w-full h-2 max-lg:h-1 bg-gradient-to-r from-[#0474D8] from-40% to-60% to-white"></div>
+         <div className="w-full h-2 max-lg:h-1 shadow bg-gradient-to-r from-[#0474D8] from-40% to-60% to-white"></div>
       </header>
    );
 };
