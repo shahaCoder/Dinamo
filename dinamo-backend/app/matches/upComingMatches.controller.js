@@ -3,13 +3,37 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
  const getUpcomingMatch = async (req, res) => {
-    const matches = await prisma?.upcomingMatch?.findMany();
-    res.json(matches)
+    const locale = req.query.locale || 'uz'
+    try {
+      const matches = await prisma?.upcomingMatch?.findMany({
+        include: {
+          translations: {
+            where: { locale },
+            select: {
+              opponent: true,
+              stadium: true
+            }
+          }
+        }
+      });
+      const transformed = matches.map(i => {
+        const translation = i.translations[0] || {}
+        return {
+          ...i,
+          ...translation,
+          translations: undefined
+        }
+      })
+      res.json(transformed)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Ошибка при получении данных' })
+    }
   }
 
   const postUpcomingMatch = async (req, res) => {
     try {
-      const { stadium, opponent, matchDate, isHomeGame, ticketLink, opponentLogo } = req.body;
+      const { matchDate, isHomeGame, ticketLink, opponentLogo, translations = [] } = req.body;
   
       // Проверка корректности даты
       const parsedDate = new Date(matchDate);
@@ -19,12 +43,17 @@ const prisma = new PrismaClient();
   
       const newMatch = await prisma.upcomingMatch.create({
         data: {
-          stadium,
-          opponent,
           isHomeGame,
           ticketLink,
           matchDate: parsedDate,
-          opponentLogo
+          opponentLogo,
+          translations: {
+            create: translations.map(t => ({
+              locale: t.locale,
+              stadium: t.stadium || '',
+              opponent: t.opponent || ''
+            }))
+          }
         },
       });
       res.json(newMatch);
@@ -63,6 +92,8 @@ const prisma = new PrismaClient();
   const updateUpcomingMatch = async (req, res) => {
     try {
       const id = parseInt(req.params.id, 10);
+
+      if(isNaN(id)) return res.status(400).json({ error: 'Некорректный ID' })
       
       // Извлекаем только те поля, которые переданы для обновления
       const { date, teams, location } = req.body;
@@ -76,23 +107,49 @@ const prisma = new PrismaClient();
         return res.status(404).json({ error: 'Матч не найден' });
       }
       
-      const { stadium, opponent, isHomeGame, ticketLink, matchDate, opponentLogo } = req.body;
+      const { isHomeGame, ticketLink, matchDate, opponentLogo, translations = [] } = req.body;
   
-      // Создаем объект для обновления, добавляя только измененные поля
-      const updateData = {};
-      const data = { stadium, opponent, isHomeGame, ticketLink, matchDate, opponentLogo }
+      
+      const matchData = { isHomeGame, ticketLink, matchDate, opponentLogo }
     
-    Object.keys(data).forEach(element => {
-      if(data[element] != undefined){
-        updateData[element] = data[element]
-      }
-    })
+      const cleanData = Object.fromEntries(
+        Object.entries(matchData).filter(([_, v]) => v !== undefined)
+      )
   
       // Обновляем матч только по переданным полям
       const updatedMatch = await prisma.upcomingMatch.update({
         where: { id },
-        data: updateData,
+        data: cleanData,
       });
+
+      for(const t of translations) {
+        if(!t.locale) continue
+        const existingTranslation = await prisma.upcomingMatchTranslation.findFirst({
+          where: {
+            upcomingMatchId: id,
+            locale: t.locale
+          }
+        })
+        if(existingTranslation) {
+          await prisma.upcomingMatchTranslation.update({
+            where: { id: existingTranslation.id },
+            data: {
+              ...(t.opponent && { opponent: t.opponent }),
+              ...(t.stadium && { stadium: t.stadium }),
+
+            }
+          })
+        } else {
+          await prisma.upcomingMatchTranslation.create({
+            data: {
+              locale: t.locale,
+              opponent: t.opponent || '',
+              stadium: t.stadium || '',
+              upcomingMatch: { connect: { id } }
+            }
+          })
+        }
+      }
   
       res.json({ message: 'Матч успешно обновлен', updatedMatch });
     } catch (error) {

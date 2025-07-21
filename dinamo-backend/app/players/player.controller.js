@@ -152,7 +152,7 @@ const editPlayer = async (req, res) => {
 			const existingTranslation = await prisma.playerTranslation.findFirst({
 				where: {
 					playerId: id,
-					locale: t.locale,
+					locale: t.locale
 				},
 			})
 
