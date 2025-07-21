@@ -244,3 +244,11 @@ body {
       rgba(24, 23, 51, 0) 55%
    );
 }
+
+.bg-player {
+   background: linear-gradient(240deg, #154284, #0f2145);
+}
+
+.player-name {
+   font-size: clamp(7rem, 29vw, 32rem);
+}

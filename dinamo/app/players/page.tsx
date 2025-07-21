@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
@@ -15,7 +16,13 @@ const Page = () => {
                   <h2 className="text-3xl max-md:text-2xl max-sm:text-xl font-bold uppercase">
                      FC Dinamo First Team
                   </h2>
-                  <Image src="/logo.png" className="max-md:w-16" width={80} height={80} alt="dinamo" />
+                  <Image
+                     src="/logo.png"
+                     className="max-md:w-16"
+                     width={80}
+                     height={80}
+                     alt="dinamo"
+                  />
                </div>
                <div className="mt-7 overflow-x-auto mx-auto py-2">
                   <div className="flex items-center justify-center gap-2 px-2 w-max sm:w-full flex-nowrap">
@@ -45,8 +52,9 @@ const Page = () => {
                   </div>
                   <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-2">
                      {[0, 1, 2, 3].map((item) => (
-                        <div
+                        <Link
                            key={item}
+                           href={`/players/${item + 1}`}
                            className=" relative z-10 flex flex-col justify-end group overflow-hidden"
                         >
                            <div className="w-full h-full playrCard absolute z- top-0 left-0" />
@@ -117,7 +125,7 @@ const Page = () => {
                                  </p>
                               </div>
                            </div>
-                        </div>
+                        </Link>
                      ))}
                   </div>
                </div>
