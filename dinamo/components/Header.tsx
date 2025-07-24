@@ -87,8 +87,8 @@ const Header = () => {
                            </Link>
                         </li>
                         <li>
-                           <Link href="/players" className="font-semibold">
-                              Players
+                           <Link href="/standings" className="font-semibold">
+                              Standings
                            </Link>
                         </li>
                      </ul>
