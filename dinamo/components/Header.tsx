@@ -98,8 +98,8 @@ const Header = () => {
                <nav className="max-md:hidden">
                   <ul className="flex items-center gap-10 max-lg:gap-5">
                      <li>
-                        <Link href="/players" className="font-semibold">
-                           Players
+                        <Link href="/news" className="font-semibold">
+                           News
                         </Link>
                      </li>
                      <li>

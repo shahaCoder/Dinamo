@@ -23,6 +23,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoLogoFacebook } from "react-icons/io";
 import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
+import NewCard from "@/components/children/NewCard";
 
 export default function Home() {
    return (
@@ -238,112 +239,35 @@ export default function Home() {
             </Carousel>
          </div>
 
-         <div className="custom-container mt-20">
-            <div className="flex items-end gap-5">
-               <h2 className="text-4xl max-md:text-2xl font-semibold">
-                  Latest news
-               </h2>
-               <hr className="bg-black h-7 w-[1px]" />
-               <Link
-                  href={"#"}
-                  className="text-xl max-md:text-base text-[#0474D8]"
-               >
-                  See More
-               </Link>
-            </div>
+         <div className="bg-[#0f2145] mt-14 py-20">
+            <div className="custom-container">
+               <div className="flex items-end gap-5">
+                  <h2 className="text-3xl max-md:text-2xl font-semibold font-russo text-white">
+                     Latest news
+                  </h2>
+                  <hr className="bg-[#fdc52c] h-8 w-0.5 border-none" />
+                  <Link
+                     href={"/news"}
+                     className="text-xl max-md:text-base text-[#fdc52c]"
+                  >
+                     See More
+                  </Link>
+               </div>
 
-            <div className="mt-10">
-               <div className="grid">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-md:gap-20">
-                     <div className="relative">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={1000}
-                           height={1000}
-                           alt="news"
-                           priority
-                        />
-                        <div className="w-[90%] mx-auto py-2 px-3 -translate-y-10 bg-white">
-                           <p className="text-sm mb-2">13 July 2025</p>
-                           <h3 className="text-xl max-sm:text-lg font-semibold">
-                              OFFICIAL STATEMENT: ANDREA DI SIENA
-                           </h3>
-                        </div>
-                     </div>
-                     <div className="relative">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={1000}
-                           height={1000}
-                           alt="news"
-                           priority
-                        />
-                        <div className="w-[90%] mx-auto py-3 px-3 -translate-y-10 bg-white">
-                           <p className="text-sm mb-2">12 July 2025</p>
-                           <h3 className="text-xl max-sm:text-lg font-semibold">
-                              OFFICIAL STATEMENT: ANDREA DI SIENA
-                           </h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-md:gap-20 mt-20">
-                     <div className="relative">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={1000}
-                           height={1000}
-                           alt="news"
-                           priority
-                        />
-                        <div className="w-[90%] mx-auto py-3 px-3 -translate-y-10 bg-white">
-                           <p className="text-sm mb-2">13 July 2025</p>
-                           <h3 className="text-xl max-sm:text-lg font-semibold">
-                              OFFICIAL STATEMENT: ANDREA DI SIENA
-                           </h3>
-                        </div>
-                     </div>
-                     <div className="relative">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={1000}
-                           height={1000}
-                           alt="news"
-                           priority
-                        />
-                        <div className="w-[90%] mx-auto py-3 px-3 -translate-y-10 bg-white">
-                           <p className="text-sm mb-2">13 July 2025</p>
-                           <h3 className="text-xl max-sm:text-lg font-semibold">
-                              OFFICIAL STATEMENT: ANDREA DI SIENA
-                           </h3>
-                        </div>
-                     </div>
-                     <div className="relative">
-                        <Image
-                           className="w-full h-full"
-                           src={`/hero.png`}
-                           width={1000}
-                           height={1000}
-                           alt="news"
-                           priority
-                        />
-                        <div className="w-[90%] mx-auto py-3 px-3 -translate-y-10 bg-white">
-                           <p className="text-sm mb-2">12 July 2025</p>
-                           <h3 className="text-xl max-sm:text-lg font-semibold">
-                              OFFICIAL STATEMENT: ANDREA DI SIENA
-                           </h3>
-                        </div>
+               <div className="mt-10">
+                  <div className="grid">
+                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 gap-y-16 max-md:gap-20">
+                        {Array.from({ length: 6 }, (_, index) => (
+                           <NewCard key={index} />
+                        ))}
                      </div>
                   </div>
                </div>
             </div>
          </div>
 
-         <div className="mt-32 mb-20 bg-white">
-            <div className="custom-container py-10">
+         <div className="mb-20 bg-white">
+            <div className="custom-container py-16">
                <div className="flex items-end gap-5">
                   <h2 className="text-4xl max-md:text-2xl font-semibold">
                      Videos
