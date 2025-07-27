@@ -1,12 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Russo_One, Manrope, Montserrat } from "next/font/google";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// const montserrat = Montserrat({
-//    variable: "--font-geist-sans",
-//    subsets: ["latin"],
-// });
+const montserrat = Montserrat({
+   subsets: ["latin"],
+   variable: "--font-montserrat",
+});
+
+export const russo = Russo_One({
+   weight: "400",
+   subsets: ["latin", "cyrillic"],
+   variable: "--font-russo",
+});
+
+export const manrope = Manrope({
+   subsets: ["latin", "cyrillic"],
+   weight: ["400", "500", "600"],
+   variable: "--font-manrope",
+});
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -19,8 +33,11 @@ export default function RootLayout({
    children: React.ReactNode;
 }>) {
    return (
-      <html lang="en">
-         <body>
+      <html
+         lang="en"
+         className={`${montserrat.className} ${russo.variable} ${manrope.variable}`}
+      >
+         <body className="pt-24">
             <Header />
             {children}
             <Footer />
