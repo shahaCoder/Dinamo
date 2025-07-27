@@ -35,6 +35,7 @@ const getPlayers = async (req, res) => {
 
 const postNewPlayer = async (req, res) => {
 	const {
+		teamCategory,
 		number,
 		birthDate,
 		height,
@@ -48,6 +49,10 @@ const postNewPlayer = async (req, res) => {
 		translations = []
 	} = req.body
 
+	if(!['U19', 'U21', 'MAIN'].includes(teamCategory)){
+		return res.status(400).json({ error: 'Invalid team category' })
+	}
+
 	const parsedDate = new Date(birthDate)
 	if (isNaN(parsedDate.getTime())) {
 		return res.status(400).json({ error: 'Некорректная дата' })
@@ -56,6 +61,7 @@ const postNewPlayer = async (req, res) => {
 	try {
 		const newPlayer = await prisma.player.create({
 			data: {
+				teamCategory,
 				number,
 				birthDate: parsedDate,
 				height,
@@ -112,6 +118,7 @@ const editPlayer = async (req, res) => {
 		if (!existingPlayer) return res.status(404).json({ error: 'Игрок не найден' })
 
 		const {
+			teamCategory,
 			number,
 			birthDate,
 			height,
@@ -126,6 +133,7 @@ const editPlayer = async (req, res) => {
 		} = req.body
 
 		const playerData = {
+			teamCategory,
 			number,
 			birthDate: birthDate ? new Date(birthDate) : undefined,
 			height,

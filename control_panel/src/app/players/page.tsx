@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PlayerCard } from "../components/player-card";
+import { ModalWindow } from "../components/modal-window";
+
+
 
 
 
@@ -15,6 +18,8 @@ export default function PlayersPage() {
   position: string;
   nationality: string;
 };
+
+const [modal, setModal] = useState<boolean>(false)
 
 const [players, setPlayers] = useState<Player[]>([]);
   
@@ -33,12 +38,20 @@ const [players, setPlayers] = useState<Player[]>([]);
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">Players</h1>
-        <Link
-          href="/players/newplayer"
+        <button
+          onClick={() => setModal(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
         >
           Add Player
-        </Link>
+        </button>
+          {
+  modal ? (
+    <div className="fixed inset-0 bg-gray-500/50 z-50 flex items-center justify-center" onClick={() => setModal(false)}>
+      <ModalWindow setModal={setModal} />
+    </div>
+  ) : null
+}
+
       </div>
 
       {loading ? (

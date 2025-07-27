@@ -6,7 +6,7 @@ export interface IAppProps {
 }
 
 export function PlayerCard (item: any) {
-    
+  
   return (
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 w-full max-w-sm border">
       <div className="flex items-center gap-4">

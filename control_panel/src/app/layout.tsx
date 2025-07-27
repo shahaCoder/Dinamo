@@ -14,12 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased">
-        <div className="flex min-h-screen">
-          <aside className="w-70 bg-[rgba(3,163,239,1)]">
+      <body className="antialiased">
+        <div className="flex justify-between relative">
+          <aside className="w-[350px] bg-[rgba(3,163,239,1)] h-full self-stretch">
             <Navbar />
           </aside>
-          <main className="flex-1 p-4 bg-white">
+          <main className="w-full p-4 bg-white h-screen">
             {children}
           </main>
         </div>
