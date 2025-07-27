@@ -6,7 +6,7 @@ const Page = ({ params }: { params: { id: string } }) => {
    return (
       <div className="">
          <img
-            className="w-full h-[100vh] fixed -z-10 top-0 left-0 object-cover object-[30%]"
+            className="w-full h-[100vh] max-md:h-[73vh] fixed -z-10 top-24 left-0 object-cover object-[30%]"
             src={`https://www.fcbarcelona.com/photo-resources/2025/07/23/46bfa46b-a72b-4035-b2bb-21ccfdead47b/16x9_TRANSFER_RASHFORD_2025.png?width=1280&height=800`}
             alt="news"
          />
@@ -15,7 +15,7 @@ const Page = ({ params }: { params: { id: string } }) => {
          <div className="h-[70vh]"></div>
          <div className="bg-white rounded-t-2xl mt-auto px-4">
             <div className="max-w-2xl mx-auto py-10">
-               <h2 className="text-4xl max-md:text-3xl font-russo bg-gradient-to-r from-[#000428] to-[#004e92] bg-clip-text text-transparent">
+               <h2 className="text-4xl max-md:text-3xl max-md:leading-8 font-russo italic bg-gradient-to-r from-[#000428] to-[#004e92] bg-clip-text text-transparent">
                   Como ninth Italian opponents in the Gamper. Далеко-далеко за
                   словесными горами в стране.
                </h2>
@@ -44,7 +44,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                />
 
                <h3 className="text-2xl font-semibold text-[#004e92]">
-                  27 July first game{" "}
+                  27 July first game
                </h3>
                <p>
                   The tour starts on Friday 25 July with the flight to Japan. On

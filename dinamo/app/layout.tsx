@@ -33,8 +33,11 @@ export default function RootLayout({
    children: React.ReactNode;
 }>) {
    return (
-      <html lang="en" className={`${montserrat.className} ${russo.variable}`}>
-         <body>
+      <html
+         lang="en"
+         className={`${montserrat.className} ${russo.variable} ${manrope.variable}`}
+      >
+         <body className="pt-24">
             <Header />
             {children}
             <Footer />

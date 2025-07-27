@@ -22,23 +22,21 @@ import {
 } from "@/components/ui/select";
 import { FaInstagram } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
+import { CiUser } from "react-icons/ci";
 
 const Header = () => {
    return (
-      <header>
-         <div className="py-3 max-lg:py-2 bg-[#0474D8]">
-            <div className="custom-container flex items-center justify-end">
-               {/* <div className="flex items-center gap-5">
-                  <Link href={"#"}>
-                     <FaInstagram className="text-[25px] max-lg:text-[20px]" color="white" />
+      <header className="fixed top-0 left-0 w-full z-50">
+         <div className="h-12 flex items-center bg-[#0474D8]">
+            <div className="custom-container flex gap-5 items-center justify-end">
+               <div className="flex items-center gap-3 group">
+                  <Link href={"#"} className="flex items-center gap-2">
+                     <div className="bg-[#0f2145] rounded-full p-1.5">
+                        <CiUser className="text-white text-xl" />
+                     </div>
+                     <p className="text-sm font-bold group-hover:underline text-white">LogIn</p>
                   </Link>
-                  <Link href={"#"}>
-                     <FaInstagram className="text-[25px] max-lg:text-[20px]" color="white" />
-                  </Link>
-                  <Link href={"#"}>
-                     <FaInstagram className="text-[25px] max-lg:text-[20px]" color="white" />
-                  </Link>
-               </div> */}
+               </div>
 
                <Select>
                   <SelectTrigger>
@@ -58,7 +56,7 @@ const Header = () => {
          <div className="bg-[#0f2145]">
             <div className="custom-container flex items-center justify-between relative text-white">
                <div className="flex items-center gap-7 max-lg:gap-5">
-                  <div className="relative w-20 h-16">
+                  <div className="relative w-20 h-14">
                      <Link
                         href={"/"}
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -77,17 +75,26 @@ const Header = () => {
                   <nav className="max-md:hidden">
                      <ul className="flex items-center gap-10 max-lg:gap-5">
                         <li>
-                           <Link href="/" className="font-semibold">
+                           <Link
+                              href="/"
+                              className="text-sm font-russo font-light italic"
+                           >
                               Home
                            </Link>
                         </li>
                         <li>
-                           <Link href="/players" className="font-semibold">
+                           <Link
+                              href="/players"
+                              className="text-sm font-russo font-light italic"
+                           >
                               Players
                            </Link>
                         </li>
                         <li>
-                           <Link href="/standings" className="font-semibold">
+                           <Link
+                              href="/standings"
+                              className="text-sm font-russo font-light italic"
+                           >
                               Standings
                            </Link>
                         </li>
@@ -98,17 +105,26 @@ const Header = () => {
                <nav className="max-md:hidden">
                   <ul className="flex items-center gap-10 max-lg:gap-5">
                      <li>
-                        <Link href="/news" className="font-semibold">
+                        <Link
+                           href="/news"
+                           className="text-sm font-russo font-light italic"
+                        >
                            News
                         </Link>
                      </li>
                      <li>
-                        <Link href="/players" className="font-semibold">
-                           Players
+                        <Link
+                           href="/schedule"
+                           className="text-sm font-russo font-light italic"
+                        >
+                           Schedule
                         </Link>
                      </li>
                      <li>
-                        <Link href="/players" className="font-semibold">
+                        <Link
+                           href="/players"
+                           className="text-sm font-russo font-light italic"
+                        >
                            Players
                         </Link>
                      </li>
@@ -120,7 +136,7 @@ const Header = () => {
             </div>
          </div>
 
-         <div className="w-full h-2 max-lg:h-1 shadow bg-gradient-to-r from-[#0474D8] from-40% to-60% to-white"></div>
+         <div className="w-full h-1 shadow bg-gradient-to-r from-[#0474D8] from-40% to-60% to-[#fdc52c]"></div>
       </header>
    );
 };
