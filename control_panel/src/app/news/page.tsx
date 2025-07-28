@@ -6,7 +6,7 @@ export interface IAppProps {
 export default function App (props: IAppProps) {
   return (
     <div>
-      <h1>NEWS</h1>
+      <h1>News</h1>
     </div>
   );
 }
