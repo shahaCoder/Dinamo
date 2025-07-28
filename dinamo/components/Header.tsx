@@ -122,10 +122,10 @@ const Header = () => {
                      </li>
                      <li>
                         <Link
-                           href="/players"
+                           href="/results"
                            className="text-sm font-russo font-light italic"
                         >
-                           Players
+                           Results
                         </Link>
                      </li>
                   </ul>
