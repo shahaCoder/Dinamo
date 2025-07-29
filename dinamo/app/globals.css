@@ -16,6 +16,10 @@ body {
    font-family: "Manrope", sans-serif;
 }
 
+.a {
+   background-color: red !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 .custom-container {

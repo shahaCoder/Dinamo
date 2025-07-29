@@ -1,7 +1,14 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
+import {
+   Select,
+   SelectContent,
+   SelectItem,
+   SelectTrigger,
+   SelectValue,
+} from "@/components/ui/select";
 import {
    NavigationMenu,
    NavigationMenuContent,
@@ -12,15 +19,6 @@ import {
    NavigationMenuTrigger,
    NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
-
-import {
-   Select,
-   SelectContent,
-   SelectItem,
-   SelectTrigger,
-   SelectValue,
-} from "@/components/ui/select";
-import { FaInstagram } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
 
@@ -34,7 +32,9 @@ const Header = () => {
                      <div className="bg-[#0f2145] rounded-full p-1.5">
                         <CiUser className="text-white text-xl" />
                      </div>
-                     <p className="text-sm font-bold group-hover:underline text-white">LogIn</p>
+                     <p className="text-sm font-bold group-hover:underline text-white">
+                        LogIn
+                     </p>
                   </Link>
                </div>
 
@@ -54,89 +54,108 @@ const Header = () => {
          </div>
 
          <div className="bg-[#0f2145]">
-            <div className="custom-container flex items-center justify-between relative text-white">
-               <div className="flex items-center gap-7 max-lg:gap-5">
-                  <div className="relative w-20 h-14">
-                     <Link
-                        href={"/"}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                     >
-                        <Image
-                           className="w-80 scale-200"
-                           src="/logo.png"
-                           alt="Logo"
-                           width={100}
-                           height={100}
-                           priority
-                        />
-                     </Link>
-                  </div>
+            <div className="custom-container flex items-center max-sm:justify-between gap-7 max-lg:gap-2 relative text-white">
+               <div className="relative w-20 h-14">
+                  <Link
+                     href={"/"}
+                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  >
+                     <Image
+                        className="w-80 scale-200"
+                        src="/logo.png"
+                        alt="Logo"
+                        width={100}
+                        height={100}
+                        priority
+                     />
+                  </Link>
+               </div>
+               <div className="flex items-center justify-between w-full max-sm:hidden">
+                  <NavigationMenu viewport={false} className="">
+                     <NavigationMenuList>
+                        <NavigationMenuItem className="px-2">
+                           <NavigationMenuLink
+                              className="font-russo text-sm italic"
+                              asChild
+                           >
+                              <Link href="#">Home</Link>
+                           </NavigationMenuLink>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                           <NavigationMenuTrigger className="font-russo text-sm italic">
+                              Matches
+                           </NavigationMenuTrigger>
+                           <NavigationMenuContent>
+                              <NavigationMenuLink asChild>
+                                 <Link href="/schedule">Schedule</Link>
+                              </NavigationMenuLink>
+                              <NavigationMenuLink asChild>
+                                 <Link href="/results">Results</Link>
+                              </NavigationMenuLink>
+                              <NavigationMenuLink asChild>
+                                 <Link href="/standings">Standings</Link>
+                              </NavigationMenuLink>
+                           </NavigationMenuContent>
+                        </NavigationMenuItem>
 
-                  <nav className="max-md:hidden">
-                     <ul className="flex items-center gap-10 max-lg:gap-5">
-                        <li>
-                           <Link
-                              href="/"
-                              className="text-sm font-russo font-light italic"
+                        <NavigationMenuItem className="">
+                           <NavigationMenuTrigger className="font-russo text-sm italic">
+                              Team
+                           </NavigationMenuTrigger>
+                           <NavigationMenuContent className="">
+                              <NavigationMenuLink className="text" asChild>
+                                 <Link href="/players">Players</Link>
+                              </NavigationMenuLink>
+                              <NavigationMenuLink className="text" asChild>
+                                 <Link href="#">U19</Link>
+                              </NavigationMenuLink>
+                              <NavigationMenuLink className="text" asChild>
+                                 <Link href="#">U23</Link>
+                              </NavigationMenuLink>
+                           </NavigationMenuContent>
+                        </NavigationMenuItem>
+                     </NavigationMenuList>
+                  </NavigationMenu>
+
+                  <NavigationMenu viewport={false} className="">
+                     <NavigationMenuList>
+                        <NavigationMenuItem className="px-2">
+                           <NavigationMenuLink
+                              className="font-russo text-sm italic"
+                              asChild
                            >
-                              Home
-                           </Link>
-                        </li>
-                        <li>
-                           <Link
-                              href="/players"
-                              className="text-sm font-russo font-light italic"
+                              <Link href="/news">News</Link>
+                           </NavigationMenuLink>
+                        </NavigationMenuItem>
+
+                        <NavigationMenuItem className="px-2">
+                           <NavigationMenuLink
+                              className="font-russo text-sm italic"
+                              asChild
                            >
-                              Players
-                           </Link>
-                        </li>
-                        <li>
-                           <Link
-                              href="/standings"
-                              className="text-sm font-russo font-light italic"
+                              <Link href="#">Photos</Link>
+                           </NavigationMenuLink>
+                        </NavigationMenuItem>
+
+                        <NavigationMenuItem className="px-2">
+                           <NavigationMenuLink
+                              className="font-russo text-sm italic"
+                              asChild
                            >
-                              Standings
-                           </Link>
-                        </li>
-                     </ul>
-                  </nav>
+                              <Link href="#">History</Link>
+                           </NavigationMenuLink>
+                        </NavigationMenuItem>
+                     </NavigationMenuList>
+                  </NavigationMenu>
                </div>
 
-               <nav className="max-md:hidden">
-                  <ul className="flex items-center gap-10 max-lg:gap-5">
-                     <li>
-                        <Link
-                           href="/news"
-                           className="text-sm font-russo font-light italic"
-                        >
-                           News
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           href="/schedule"
-                           className="text-sm font-russo font-light italic"
-                        >
-                           Schedule
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           href="/results"
-                           className="text-sm font-russo font-light italic"
-                        >
-                           Results
-                        </Link>
-                     </li>
-                  </ul>
-               </nav>
-               <button className="max-md:block hidden bg-[#0474D8] p-2 rounded-full">
+               <button className="max-sm:block hidden bg-[#0474D8] p-2 rounded-full">
                   <IoMenu className="text-[20px] text-white" />
                </button>
             </div>
          </div>
 
-         <div className="w-full h-1 shadow bg-gradient-to-r from-[#0474D8] from-40% to-60% to-[#fdc52c]"></div>
+         <div className="w-full h-1 shadow bg-gradient-to-r from-[#fdc52c] from-40% to-60% to-[#0474D8]"></div>
       </header>
    );
 };
