@@ -37,7 +37,8 @@ export default function RootLayout({
          lang="en"
          className={`${montserrat.className} ${russo.variable} ${manrope.variable}`}
       >
-         <body className="pt-24">
+         <body className="">
+            <div className="h-24"></div>
             <Header />
             {children}
             <Footer />
