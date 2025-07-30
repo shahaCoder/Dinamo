@@ -6,13 +6,12 @@ const Page = ({ params }: { params: { id: string } }) => {
    return (
       <div className="">
          <img
-            className="w-full h-[100vh] max-md:h-[73vh] fixed -z-10 top-24 left-0 object-cover object-[30%]"
+            className="w-full h-[70vh] max-md:h-[73vh] sticky -z-10 top-[108px] object-cover object-[30%]"
             src={`https://www.fcbarcelona.com/photo-resources/2025/07/23/46bfa46b-a72b-4035-b2bb-21ccfdead47b/16x9_TRANSFER_RASHFORD_2025.png?width=1280&height=800`}
             alt="news"
          />
          <div className="w-8 h-80 max-md:w-5 max-md:h-60 fixed -z-10 left-0 top-1/5 bg-[#154284]" />
          <div className="w-8 h-80 max-md:w-5 max-md:h-60 fixed -z-10 right-0 top-1/2 bg-[#fdc52c]" />
-         <div className="h-[70vh]"></div>
          <div className="bg-white rounded-t-2xl mt-auto px-4">
             <div className="max-w-2xl mx-auto py-10">
                <h2 className="text-4xl max-md:text-3xl max-md:leading-8 font-russo italic bg-gradient-to-r from-[#000428] to-[#004e92] bg-clip-text text-transparent">

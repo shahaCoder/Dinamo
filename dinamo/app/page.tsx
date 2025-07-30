@@ -19,10 +19,7 @@ import {
 } from "@/components/ui/carousel";
 
 import { MdCalendarMonth } from "react-icons/md";
-import { CiLocationOn } from "react-icons/ci";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { IoLogoFacebook } from "react-icons/io";
-import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import NewCard from "@/components/children/NewCard";
 
 export default function Home() {
@@ -173,9 +170,18 @@ export default function Home() {
          </section>
 
          <div className="custom-container mt-20">
-            <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic mb-10 max-md:mb-5">
-               Next Events
-            </h2>
+            <div className="flex items-end gap-5 mb-10 max-md:mb-5">
+               <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic">
+                  Next Events
+               </h2>
+               <hr className="bg-[#fdc52c] h-8 w-0.5 border-none" />
+               <Link
+                  href={"/news"}
+                  className="text-xl max-md:text-base font-medium text-[#fdc52c]"
+               >
+                  See More
+               </Link>
+            </div>
 
             <Carousel>
                <CarouselContent className="-ml-4">
@@ -250,13 +256,13 @@ export default function Home() {
          <div className="bg-[#0f2145] mt-14 py-20">
             <div className="custom-container">
                <div className="flex items-end gap-5">
-                  <h2 className="text-3xl max-md:text-2xl font-semibold font-russo italic text-white">
+                  <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic text-white">
                      Latest news
                   </h2>
                   <hr className="bg-[#fdc52c] h-8 w-0.5 border-none" />
                   <Link
                      href={"/news"}
-                     className="text-xl max-md:text-base text-[#fdc52c]"
+                     className="text-xl max-md:text-base font-medium text-[#fdc52c]"
                   >
                      See More
                   </Link>
@@ -274,117 +280,49 @@ export default function Home() {
             </div>
          </div>
 
-         <div className="mb-20 bg-white">
-            <div className="custom-container py-16">
-               <div className="flex items-end gap-5">
-                  <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic">
-                     Videos
-                  </h2>
-                  <hr className="bg-[#0474D8] h-7 w-[1px] border-none" />
-                  <Link
-                     href={"#"}
-                     className="text-xl max-md:text-base text-[#0474D8]"
-                  >
-                     Watch More
-                  </Link>
-               </div>
+         <div className="custom-container mt-10 pb-10">
+            <div className="flex items-end gap-5">
+               <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic">
+                  Photo Galleries
+               </h2>
+               <hr className="bg-[#fdc52c] h-7 w-[1px] border-none" />
+               <Link
+                  href={"#"}
+                  className="text-xl max-md:text-base font-medium text-[#fdc52c]"
+               >
+                  See More
+               </Link>
+            </div>
 
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-md:gap-x-2 mt-10 max-md:mt-7">
-                  {/* Главный блок на всю ширину на мобилке */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-md:gap-x-2 mt-10 max-md:mt-7">
+               {[...Array(4)].map((_, i) => (
                   <Link
+                     key={i}
                      href={"#"}
-                     className="col-span-2 row-span-2 group overflow-hidden"
+                     className="relative h-[180px] sm:h-[250px] lg:h-[280px] overflow-hidden group"
                   >
-                     <div className="h-[40vw] sm:h-[70%] overflow-hidden">
-                        <Image
-                           className="w-full h-full object-cover transition-transform duration-[1.5s] ease-in-out group-hover:scale-110"
-                           src={"/hero.png"}
-                           width={1000}
-                           height={1000}
-                           alt="video"
-                        />
-                     </div>
-                     <div className="bg-[#0f2145] h-full py-6 px-3 md:py-4 md:px-3">
-                        <p className="text-white text-xs md:text-sm">
+                     {/* Фон */}
+                     <Image
+                        src="/hero.png"
+                        alt={`section bg ${i}`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                     />
+
+                     {/* Затемнение */}
+                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+
+                     {/* Текст */}
+                     <div className="absolute inset-0 flex flex-col items-start justify-end px-5 py-7 max-sm:py-4 z-10">
+                        <p className="text-white text-xs sm:text-sm">
                            13 July 2025
                         </p>
-                        <h3 className="text-white text-base md:text-2xl sm:text-xl font-russo leading-6 line-clamp-2 mt-2 md:mt-3">
-                           Away Kit 2025/26: the backstage lorem
+                        <h3 className="text-white text-xl max-md:text-lg max-sm:text-sm font-semibold font-russo line-clamp-2 mt-1">
+                           History of the Academy
                         </h3>
                      </div>
                   </Link>
-
-                  {/* Остальные карточки — в колонку на мобилке, в сетку на десктопе */}
-                  {[0, 1, 2, 3].map((item: number) => (
-                     <Link
-                        href={"#"}
-                        key={item}
-                        className="group overflow-hidden"
-                     >
-                        <div className="h-[30vw] md:h-[60%] overflow-hidden">
-                           <Image
-                              className="w-full h-full object-cover transition-transform duration-[1.5s] ease-in-out group-hover:scale-110"
-                              src={"/hero.png"}
-                              width={1000}
-                              height={1000}
-                              alt="video"
-                           />
-                        </div>
-                        <div className="bg-[#0f2145] h-full py-4 px-3 md:py-2 md:px-4">
-                           <p className="text-white text-xs">13 July 2025</p>
-                           <h3 className="text-white text-sm md:text-sm font-russo leading-4 line-clamp-2 mt-1">
-                              Away Kit 2025/26: the backstage
-                           </h3>
-                        </div>
-                     </Link>
-                  ))}
-               </div>
-            </div>
-
-            <div className="custom-container mt-10 pb-10">
-               <div className="flex items-end gap-5">
-                  <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic">
-                     Photo Galleries
-                  </h2>
-                  <hr className="bg-[#0474D8] h-7 w-[1px] border-none" />
-                  <Link
-                     href={"#"}
-                     className="text-xl max-md:text-base text-[#0474D8]"
-                  >
-                     See More
-                  </Link>
-               </div>
-
-               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-md:gap-x-2 mt-10 max-md:mt-7">
-                  {[...Array(4)].map((_, i) => (
-                     <Link
-                        key={i}
-                        href={"#"}
-                        className="relative h-[180px] sm:h-[250px] lg:h-[280px] overflow-hidden group"
-                     >
-                        {/* Фон */}
-                        <Image
-                           src="/hero.png"
-                           alt={`section bg ${i}`}
-                           fill
-                           className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                        />
-
-                        {/* Затемнение */}
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
-
-                        {/* Текст */}
-                        <div className="absolute inset-0 flex flex-col items-start justify-end px-5 py-7 max-sm:py-4 z-10">
-                           <p className="text-white text-xs sm:text-sm">
-                              13 July 2025
-                           </p>
-                           <h3 className="text-white text-xl max-md:text-lg max-sm:text-sm font-semibold font-russo line-clamp-2 mt-1">
-                              History of the Academy
-                           </h3>
-                        </div>
-                     </Link>
-                  ))}
-               </div>
+               ))}
             </div>
          </div>
       </div>
