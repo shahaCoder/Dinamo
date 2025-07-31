@@ -77,10 +77,21 @@ const Page = () => {
                <h1 className="text-3xl max-md:text-2xl font-bold font-russo italic uppercase">
                   First Team Results
                </h1>
+               <hr className="w-full h-0.5 mt-4" />
 
-               <div className="flex flex-col items-center justify-center mt-10 max-md:mt-6">
-                  {Array.from({ length: 6 }, (_, index) => (
-                     <ResultsCard key={index} />
+               <div className="flex flex-col gap-8 mt-5">
+                  {Array.from({ length: 3 }, (_, index) => (
+                     <div key={index} className="">
+                        <p className="text-2xl max-md:text-xl font-russo uppercase">
+                           August 2025
+                        </p>
+                        <div className="flex flex-col items-center justify-center my-4">
+                           {Array.from({ length: 4 }, (_, index) => (
+                              <ResultsCard key={index} />
+                           ))}
+                        </div>
+                        <div className="w-full h-2 shadow bg-gradient-to-r from-[#fdc52c] from-40% to-60% to-[#0474D8]" />
+                     </div>
                   ))}
                </div>
             </div>
