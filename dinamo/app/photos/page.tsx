@@ -12,7 +12,7 @@ const Page = () => {
             <Link
                href={"#"}
                className="relative aspect-video max-sm:aspect-[3/3] group flex flex-col items-center justify-end py-10 max-lg:py-5 z-10 before:absolute before:-z-10 before:-bottom-1.5 before:left-1/2 before:-translate-x-1/2 before:w-[98%] before:h-full before:bg-[#0f21457e] after:absolute after:-z-20 after:-bottom-3 after:left-1/2 after:-translate-x-1/2 after:w-[96%] after:h-full after:bg-[#0f21455d]"
-            >  
+            >
                <div className="w-3/4 h-40 rounded-full blur-[250px] absolute -z-20 -bottom-32 left-1/2 -translate-x-1/2 bg-[#fdc52c]" />
                <div className="w-1/4 max-md:w-1/3 h-7 max-md:h-3 absolute top-0 right-10 bg-[#154284]" />
                <div className="w-1/4 max-md:w-1/3 h-7 max-md:h-3 absolute bottom-0 left-0 bg-[#fdc52c]" />
@@ -54,10 +54,14 @@ const Page = () => {
                   {Array.from({ length: 10 }).map((_, index) => (
                      <Link
                         key={index}
-                        href={"#"}
+                        href={"/photos/1"}
                         className="relative group flex max-sm:gap-3 sm:flex-col sm:p-1.5 py-3 group hover:shadow-lg duration-200 ease-in sm:border border-b border-gray-200"
                      >
-                        <div className="relative max-sm:w-2/5 z-10 group-hover:before:top-1.5 before:absolute before:-z-10 before:top-1 before:left-1/2 before:-translate-x-1/2 before:w-[95%] before:h-full before:bg-gray-300 group-hover:after:top-3 after:absolute after:-z-20 after:top-2 after:left-1/2 after:-translate-x-1/2 after:w-[90%] after:h-full after:bg-gray-200 before:duration-200 after:duration-400 max-sm:before:hidden max-sm:after:hidden">
+                        <div className="relative max-sm:w-2/5 z-10 group-hover:before:top-1.5 before:absolute before:-z-10 before:top-1 before:left-1/2 before:-translate-x-1/2 before:w-[95%] before:h-full before:bg-[#c6c6c6] group-hover:after:top-3 after:absolute after:-z-20 after:top-2 after:left-1/2 after:-translate-x-1/2 after:w-[90%] after:h-full after:bg-[#c7c7c780] before:duration-200 after:duration-400 max-sm:before:hidden max-sm:after:hidden">
+                           <div className="absolute top-2 right-2 flex justify-center gap-0.5 px-2 py-0.5 rounded-md bg-[#154284] text-white">
+                              <p className="text-xs font-semibold">12</p>
+                              <HiCamera className="text-[14px]" />
+                           </div>
                            <img
                               className="w-full h-full object-cover aspect-[3/2]"
                               src="https://www.fcbarcelona.com/photo-resources/2025/07/27/4a52914a-f3bb-4a51-a3dd-ea76b4ef59e2/_MGA8564.jpg?width=862&height=538"

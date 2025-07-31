@@ -263,3 +263,22 @@ body {
 .player-name {
    font-size: clamp(7rem, 29vw, 32rem);
 }
+
+.gradient {
+   background: linear-gradient(180deg, #18173300 0, #181733);
+}
+
+.yarl__container,
+.yarl__thumbnails_container {
+   background: black !important;
+   backdrop-filter: blur(6px);
+}
+
+.yarl__thumbnails_vignette {
+   background: none !important;
+}
+
+.yarl__flex_center {
+   border: none !important;
+   background-color: transparent !important;
+}
