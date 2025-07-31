@@ -34,7 +34,7 @@ export default function RootLayout({
          lang="en"
          className={`${montserrat.className} ${russo.variable} ${manrope.variable}`}
       >
-         <body className="">{children}</body>
+         <body>{children}</body>
       </html>
    );
 }
