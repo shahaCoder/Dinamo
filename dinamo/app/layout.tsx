@@ -18,7 +18,7 @@ export const russo = Russo_One({
 
 export const manrope = Manrope({
    subsets: ["latin", "cyrillic"],
-   weight: ["400", "500", "600"],
+   weight: ["400", "500", "600", "800"],
    variable: "--font-manrope",
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
          lang="en"
          className={`${montserrat.className} ${russo.variable} ${manrope.variable}`}
       >
-         <body className="pt-24">
+         <body className="">
             <Header />
             {children}
             <Footer />

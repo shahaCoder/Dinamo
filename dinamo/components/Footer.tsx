@@ -8,10 +8,10 @@ import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 const Footer = () => {
    return (
       <>
-         <div className="bg-[#0f2145] m py-10">
+         <div className="bg-[#0a1833] py-10">
             <div className="custom-container relative">
-               <h2 className="text-yellow-500">Main Partners</h2>
-               <div className="bg-yellow-600 w-0.5 h-full absolute z-20 top-10 left-9 max-lg:left-7 max-md:left-5" />
+               <h2 className="text-yellow-500 font-russo italic">Main Partners</h2>
+               <div className="bg-yellow-600 w-0.5 h-3/4 absolute z-20 top-10 left-9 max-lg:left-7 max-md:left-5" />
                <div className="flex items-center justify-around mt-5">
                   <Link href={"#"}>
                      <Image

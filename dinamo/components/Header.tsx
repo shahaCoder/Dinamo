@@ -21,10 +21,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import { IoMenu } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
+import { GrLanguage } from "react-icons/gr";
 
 const Header = () => {
    return (
-      <header className="fixed top-0 left-0 w-full z-50">
+      <header className="sticky top-0 w-full z-50">
          <div className="h-12 flex items-center bg-[#0474D8]">
             <div className="custom-container flex gap-5 items-center justify-end">
                <div className="flex items-center gap-3 group">
@@ -39,10 +40,11 @@ const Header = () => {
                </div>
 
                <Select>
-                  <SelectTrigger>
+                  <SelectTrigger className="py-1.5">
+                     <GrLanguage />
                      <SelectValue placeholder="UZ" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="w-10">
                      <SelectItem defaultChecked value="light">
                         UZ
                      </SelectItem>
@@ -133,7 +135,7 @@ const Header = () => {
                               className="font-russo text-sm italic"
                               asChild
                            >
-                              <Link href="#">Photos</Link>
+                              <Link href="/photos">Photos</Link>
                            </NavigationMenuLink>
                         </NavigationMenuItem>
 
