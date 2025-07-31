@@ -29,12 +29,15 @@ const Header = () => {
          <div className="h-12 flex items-center bg-[#0474D8]">
             <div className="custom-container flex gap-5 items-center justify-end">
                <div className="flex items-center gap-3 group">
-                  <Link href={"#"} className="flex items-center gap-2">
+                  <Link
+                     href={"/auth/log-in"}
+                     className="flex items-center gap-2"
+                  >
                      <div className="bg-[#0f2145] rounded-full p-1.5">
                         <CiUser className="text-white text-xl" />
                      </div>
-                     <p className="text-sm font-bold group-hover:underline text-white">
-                        LogIn
+                     <p className="text-sm font-bold font-russo tracking-widest group-hover:underline text-white">
+                        Log In
                      </p>
                   </Link>
                </div>

@@ -6,7 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoCalendarOutline, IoLocationOutline } from "react-icons/io5";
 import { MdCalendarMonth } from "react-icons/md";
 
-const Hage = ({ params }: { params: { id: number } }) => {
+const Hage = () => {
    return (
       <div className="bg-[#0f2145]">
          <div className="bg-player relative z-10 overflow-hidden">
@@ -95,10 +95,10 @@ const Hage = ({ params }: { params: { id: number } }) => {
                                  Defender
                               </p>
                               <div className="flex justify-center gap-1">
-                                 <p className="text-gray-300 text-3xl">3 </p>
+                                 <p className="text-gray-300 text-3xl font-medium">3 </p>
                                  <p className="text-xl max-md:text-lg text-white">
                                     Alejandro{" "}
-                                    <span className="text-3xl max-md:text-2xl font-bold uppercase">
+                                    <span className="text-3xl max-md:text-2xl font-bold font-russo uppercase">
                                        Balde
                                     </span>
                                  </p>

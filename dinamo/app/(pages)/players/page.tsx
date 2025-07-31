@@ -6,14 +6,14 @@ const Page = () => {
    return (
       <div className="bg-[#0f2145] py-10">
          <div className="custom-container">
-            <h1 className="text-[#fdc52c] text-4xl max-md:text-2xl font-bold text-center uppercase">
+            <h1 className="text-[#fdc52c] text-4xl max-md:text-2xl font-bold font-russo text-center uppercase">
                FC Dinamo - First Team
             </h1>
          </div>
          <div className="bg-white rounded-xl mx-4 max-md:mx-2 p-10 max-lg:px-4 mt-10">
             <div className="max-w-7xl">
                <div className="flex items-center justify-between">
-                  <h2 className="text-3xl max-md:text-2xl max-sm:text-xl font-bold uppercase">
+                  <h2 className="text-3xl max-md:text-2xl max-sm:text-xl font-bold font-russo uppercase italic">
                      FC Dinamo First Team
                   </h2>
                   <Image
@@ -35,8 +35,7 @@ const Page = () => {
                      ].map((item) => (
                         <button
                            key={item}
-                           className="text-xs max-sm:text-[10px] font-bold uppercase px-4 py-2 rounded shadow cursor-pointer whitespace-nowrap
-                   duration-200 ease-in-out bg-white hover:bg-[#154284] hover:text-white"
+                           className="text-xs max-sm:text-[10px] font-bold font-russo uppercase px-4 py-2 rounded shadow cursor-pointer whitespace-nowrap duration-200 ease-in-out bg-white hover:bg-[#154284] hover:text-white"
                         >
                            {item}
                         </button>
@@ -46,7 +45,7 @@ const Page = () => {
 
                <div className="mt-8">
                   <div className="mb-7">
-                     <h2 className="text-3xl max-md:text-2xl font-bold uppercase text-center">
+                     <h2 className="text-3xl max-md:text-2xl font-bold font-russo uppercase text-center">
                         Goalkeepers
                      </h2>
                   </div>
@@ -72,9 +71,9 @@ const Page = () => {
                            </p>
 
                            <div className="absolute bottom-4 left-0 w-full transition-all duration-300 ease-in-out group-hover:bottom-32 max-md:group-hover:bottom-28">
-                              <p className="text-xl max-md:text-lg text-center mb-4 text-white">
+                              <p className="text-xl italic max-md:text-lg text-center mb-4 text-white">
                                  Alejandro{" "}
-                                 <span className="text-3xl max-md:text-2xl font-bold uppercase">
+                                 <span className="text-3xl max-md:text-2xl font-bold font-russo uppercase">
                                     Balde
                                  </span>
                               </p>

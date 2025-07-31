@@ -2,7 +2,7 @@ import NewCard from "@/components/children/NewCard";
 import Image from "next/image";
 import React from "react";
 
-const Page = ({ params }: { params: { id: string } }) => {
+const Page = () => {
    return (
       <div className="">
          <img

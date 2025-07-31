@@ -1,12 +1,6 @@
 import Image from "next/image";
 
-export default async function Page({
-   params,
-}: {
-   params: Promise<{ id: string }>;
-}) {
-   const { id } = await params;
-
+const Page = () => {
    return (
       <div className="bg-[#0f2145]">
          <div className="custom-container pt-28 pb-40">
@@ -80,4 +74,6 @@ export default async function Page({
          </div>
       </div>
    );
-}
+};
+
+export default Page;

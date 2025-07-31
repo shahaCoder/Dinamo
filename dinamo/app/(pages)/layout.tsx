@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Russo_One, Manrope, Montserrat } from "next/font/google";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const montserrat = Montserrat({
    subsets: ["latin"],
@@ -34,7 +36,11 @@ export default function RootLayout({
          lang="en"
          className={`${montserrat.className} ${russo.variable} ${manrope.variable}`}
       >
-         <body className="">{children}</body>
+         <body className="">
+            <Header />
+            {children}
+            <Footer />
+         </body>
       </html>
    );
 }

@@ -10,7 +10,7 @@ const Page = () => {
       <div className="bg-[#0f2145] pb-10">
          <div className="custom-container pt-6 pb-10">
             <Link
-               href={"#"}
+               href={"/photos/2"}
                className="relative aspect-video max-sm:aspect-[3/3] group flex flex-col items-center justify-end py-10 max-lg:py-5 z-10 before:absolute before:-z-10 before:-bottom-1.5 before:left-1/2 before:-translate-x-1/2 before:w-[98%] before:h-full before:bg-[#0f21457e] after:absolute after:-z-20 after:-bottom-3 after:left-1/2 after:-translate-x-1/2 after:w-[96%] after:h-full after:bg-[#0f21455d]"
             >
                <div className="w-3/4 h-40 rounded-full blur-[250px] absolute -z-20 -bottom-32 left-1/2 -translate-x-1/2 bg-[#fdc52c]" />
