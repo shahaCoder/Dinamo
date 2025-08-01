@@ -41,6 +41,7 @@
 'use client'
 
 import { useState } from 'react'
+import GameCard from '../components/game-card'
 
 export default function PastMatchForm() {
   const [formData, setFormData] = useState({
@@ -78,21 +79,26 @@ export default function PastMatchForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
 
-    const res = await fetch('http://localhost:3000/pastMatches', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
+    // const res = await fetch('http://localhost:3000/pastMatches', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(formData),
+    // })
+    console.log(formData);
+    
 
-    if (res.ok) {
-      alert('Матч успешно добавлен')
-    } else {
-      alert('Ошибка')
-    }
+    // if (res.ok) {
+    //   alert('Матч успешно добавлен')
+    // } else {
+    //   alert('Ошибка')
+    // }
   }
+  
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4">
+    <div>
+      <GameCard match={formData} />
+      <form onSubmit={handleSubmit} className="space-y-4 p-4">
       <label htmlFor="matchDate">Выберите дату и время</label>
       <input
         type="datetime-local"
@@ -121,23 +127,23 @@ export default function PastMatchForm() {
 
       {formData.translations.map((t, idx) => (
         <div key={t.locale} className="border p-2 rounded bg-gray-50">
-          <p className="font-bold">{t.locale.toUpperCase()}</p>
-          <input placeholder="opponent" className="border p-1 w-full" value={t.opponent} onChange={e => {
+          <p className="font-bold">{'Информация об игре на ' + t.locale.toUpperCase()}</p>
+          <input placeholder={'Название команды соперника на ' + t.locale} className="border p-1 w-full" value={t.opponent} onChange={e => {
             const copy = [...formData.translations]
             copy[idx].opponent = e.target.value
             setFormData({ ...formData, translations: copy })
           }} />
-          <input placeholder="stadium" className="border p-1 w-full" value={t.stadium} onChange={e => {
+          <input placeholder={'Название стадиона на ' + t.locale} className="border p-1 w-full" value={t.stadium} onChange={e => {
             const copy = [...formData.translations]
             copy[idx].stadium = e.target.value
             setFormData({ ...formData, translations: copy })
           }} />
-          <input placeholder="league" className="border p-1 w-full" value={t.league} onChange={e => {
+          <input placeholder={'Название лиги на ' + t.locale} className="border p-1 w-full" value={t.league} onChange={e => {
             const copy = [...formData.translations]
             copy[idx].league = e.target.value
             setFormData({ ...formData, translations: copy })
           }} />
-          <input placeholder="referee" className="border p-1 w-full" value={t.referee} onChange={e => {
+          <input placeholder={'ФИО судьи на ' + t.locale} className="border p-1 w-full" value={t.referee} onChange={e => {
             const copy = [...formData.translations]
             copy[idx].referee = e.target.value
             setFormData({ ...formData, translations: copy })
@@ -148,21 +154,38 @@ export default function PastMatchForm() {
       <hr />
       <p className="font-bold">Добавить событие</p>
       <div className="grid grid-cols-2 gap-2">
-        <input placeholder="минута" value={event.minute} onChange={e => setEvent({ ...event, minute: e.target.value })} className="border p-1" />
-        <select value={event.type} onChange={e => setEvent({ ...event, type: e.target.value })} className="border p-1">
+        <div className='flex flex-col'>
+          <label htmlFor="">Минута на которой произошло событие</label>
+        <input placeholder="10" value={event.minute} onChange={e => setEvent({ ...event, minute: e.target.value })} className="border p-1" />
+        </div>
+        <div className='flex flex-col'>
+          <label htmlFor="">Тип события</label>
+        <select value={event.type} id='type' onChange={e => setEvent({ ...event, type: e.target.value })} className="border p-1">
           <option value="goal">Гол</option>
           <option value="substitution">Замена</option>
           <option value="yellow_card">ЖК</option>
           <option value="red_card">КК</option>
         </select>
-        <select value={event.team} onChange={e => setEvent({ ...event, team: e.target.value })} className="border p-1">
+        </div>
+        <div className='flex flex-col'>
+          <label htmlFor="">Команда из-за которой произошло событие</label>
+          <select value={event.team} onChange={e => setEvent({ ...event, team: e.target.value })} className="border p-1">
           <option value="home">Наша команда</option>
           <option value="away">Соперник</option>
         </select>
-        <input placeholder="Игрок" value={event.playerName} onChange={e => setEvent({ ...event, playerName: e.target.value })} className="border p-1" />
-        <input placeholder="Ассистент" value={event.assistName} onChange={e => setEvent({ ...event, assistName: e.target.value })} className="border p-1" />
-        <input placeholder="Sub In" value={event.subIn} onChange={e => setEvent({ ...event, subIn: e.target.value })} className="border p-1" />
-        <input placeholder="Sub Out" value={event.subOut} onChange={e => setEvent({ ...event, subOut: e.target.value })} className="border p-1" />
+        </div>
+        {
+          event.type == 'goal' ? <div className='flex flex-col'>
+          <label htmlFor="">Имя игрока</label>
+          <input placeholder="Игрок" value={event.playerName} onChange={e => setEvent({ ...event, playerName: e.target.value })} className="border p-1" />
+        </div> : null
+        }
+        {
+          event.type == 'goal' && (<input placeholder="Имя игрока который стал ассистом" value={event.assistName} onChange={e => setEvent({ ...event, assistName: e.target.value })} className="border p-1" />)
+        }
+        {
+          event.type == 'substitution' ? <div className='flex flex-col gap-2'><input placeholder="Имя игрока который вышел на поле" value={event.subIn} onChange={e => setEvent({ ...event, subIn: e.target.value })} className="border p-1" /> <input placeholder="Имя игрока которого заменили" value={event.subOut} onChange={e => setEvent({ ...event, subOut: e.target.value })} className="border p-1" /></div> : null
+        }
       </div>
       <button type="button" onClick={addEvent} className="bg-blue-500 text-white px-4 py-2 rounded">
         + Добавить событие
@@ -170,5 +193,6 @@ export default function PastMatchForm() {
 
       <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded w-full mt-4">Создать матч</button>
     </form>
+    </div>
   )
 }

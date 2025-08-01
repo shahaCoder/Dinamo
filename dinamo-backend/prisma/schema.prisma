@@ -138,27 +138,58 @@ model CommentTranslation {
   @@unique([commentId, locale])
 }
 
+// model PastMatch {
+//   id            Int                    @id @default(autoincrement())
+//   opponentLogo  String?
+//   matchDate     DateTime
+//   isHomeGame    Boolean
+//   homeTeamScore Int
+//   awayTeamScore Int
+//   translations  PastMatchTranslation[]
+//   createdAt     DateTime               @default(now())
+//   updatedAt     DateTime               @updatedAt
+// }
 model PastMatch {
-  id            Int                    @id @default(autoincrement())
+  id            Int                     @id @default(autoincrement())
   opponentLogo  String?
   matchDate     DateTime
   isHomeGame    Boolean
   homeTeamScore Int
   awayTeamScore Int
+  tourNumber    Int?                   // 🆕 тур
+  attendance    Int?                   // 🆕 посещаемость
+  events        PastMatchEvent[]                  // 🆕 события (голы, замены, карточки)
   translations  PastMatchTranslation[]
   createdAt     DateTime               @default(now())
   updatedAt     DateTime               @updatedAt
 }
 
 model PastMatchTranslation {
-  id          Int       @id @default(autoincrement())
+  id       Int        @id @default(autoincrement())
   opponent    String
-  stadium     String
-  locale      String
   pastMatchId Int
-  pastMatch   PastMatch @relation(fields: [pastMatchId], references: [id], onDelete: Cascade)
+  stadium     String
+  locale   String       
+  referee  String?     // 🆕 судья (переводимый) 
+  league   String?     // 🆕 лига (переводимая)
+
+  pastMatch    PastMatch  @relation(fields: [pastMatchId], references: [id], onDelete: Cascade)
 
   @@unique([pastMatchId, locale])
+}
+
+
+model PastMatchEvent {
+  id          Int       @id @default(autoincrement())
+  pastMatchId Int
+  minute      String    // Пример: "80", "90+3"
+  type        String    // Пример: "goal", "substitution", "red_card"
+  playerName      String?  // Имя игрока (для гола или карточки)
+  assistName      String?  
+  team        String?
+  subbedIn    String?  // Вошедший игрок (только для замены)
+  subbedOut   String?
+  pastMatch   PastMatch @relation(fields: [pastMatchId], references: [id], onDelete: Cascade)
 }
 
 model Coach {
