@@ -29,7 +29,7 @@ const ResultsCard = () => {
          <div className="max-w-md max-lg:max-w-[400px] max-md:max-w-full w-full flex items-center justify-between gap-5 max-lg:gap-3">
             <div className="w-[45%] max-md:w-[30%] flex max-md:flex-col-reverse items-center justify-end gap-3 max-md:gap-2">
                <p className="text-lg max-lg:text-sm max-sm:text-xs font-russo group-hover:text-[#154284]">
-                  FC Barcelona
+                  FC Dinamo
                </p>
                <Image
                   className="max-lg:w-11 max-md:w-14"
@@ -68,7 +68,7 @@ const ResultsCard = () => {
                   alt="dinamo"
                />
                <p className="text-lg max-lg:text-sm max-sm:text-xs font-russo group-hover:text-[#154284]">
-                  Real Madrid
+                  FC Paxtakor
                </p>
             </div>
          </div>
