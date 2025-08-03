@@ -19,7 +19,7 @@ export default function RootLayout({
           <aside className="w-[350px] bg-[rgba(3,163,239,1)] h-screen self-stretch">
             <Navbar />
           </aside>
-          <main className="w-full p-4 bg-white h-screen overflow-y-auto">
+          <main className="w-full p-4 bg-white h-screen overflow-y-auto ">
             {children}
           </main>
         </div>
