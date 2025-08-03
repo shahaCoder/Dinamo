@@ -21,6 +21,8 @@ import {
 import { MdCalendarMonth } from "react-icons/md";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import NewCard from "@/components/children/NewCard";
+import PhotosCard from "@/components/children/PhotosCard";
+import PlayerCard from "@/components/children/PlayerCard";
 
 export default function Home() {
    return (
@@ -37,11 +39,11 @@ export default function Home() {
             <div className="custom-container h-[60vh] max-md:h-[50vh] py-40 max-md:py-32 text-white">
                <div className="h-full flex flex-col justify-end">
                   <h2 className="text-4xl max-md:text-xl font-semibold font-russo tracking-wider">
-                     RICCI: "AT AC MILAN TO GROW AND IMPROVE"
+                     Lorem ipsum dolor sit amet consectetur.
                   </h2>
                   <p className="text-lg max-md:text-sm font-manrope">
-                     The new Rossoneri midfielder speaks to the media at Casa
-                     Milan
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Saepe, cumque.
                   </p>
                </div>
             </div>
@@ -54,10 +56,10 @@ export default function Home() {
                      <h3 className="text-2xl max-md:text-xl font-semibold font-russo italic">
                         MATCHES
                      </h3>
-                     <p className="max-md:text-xs font-light">Serie A</p>
+                     <p className="max-md:text-xs font-light">Superliga</p>
                      <p className="font-semibold text-sm">Matchday 1</p>
                      <p className="text-xs">23 August 2025 23:45</p>
-                     <p className="text-xs">San Siro Stadium</p>
+                     <p className="text-xs">FC Dinamo Stadium</p>
                   </div>
                   <div className="flex items-center justify-around w-full my-5">
                      <div className="">
@@ -89,7 +91,7 @@ export default function Home() {
                      </div>
                   </div>
                   <Link
-                     href={"#"}
+                     href={"/schedule"}
                      className="mt-auto max-md:text-sm underline underline-offset-1 text-[#0474D8]"
                   >
                      See all matches
@@ -104,7 +106,7 @@ export default function Home() {
                      <TableHeader>
                         <TableRow>
                            <TableHead></TableHead>
-                           <TableHead>Serie A</TableHead>
+                           <TableHead>Superliga</TableHead>
                            <TableHead>Pts</TableHead>
                            <TableHead className="text-center">P</TableHead>
                            <TableHead className="text-right">GD</TableHead>
@@ -145,26 +147,32 @@ export default function Home() {
             </div>
          </div>
 
-         <section className="bg-[#0f2145] text-white py-12 px-4 sm:px-8 md:px-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
-               ⭐ Лучший игрок месяца
-            </h2>
-            <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center bg-yellow-600 p-6 rounded-2xl shadow-lg gap-6">
-               <Image
-                  src="/logo.png"
-                  alt="Лучший игрок"
-                  width={180}
-                  height={180}
-                  className="rounded-full border-4 border-yellow-400"
-               />
-               <div className="text-center md:text-left">
-                  <h3 className="text-2xl font-semibold">Лионель Месси</h3>
-                  <p className="text-white font-medium">Нападающий</p>
-                  <p className="mt-3 text-zinc-300">
-                     🔥 Голы: <span className="font-bold">5</span> <br />
-                     🎯 Ассисты: <span className="font-bold">3</span> <br />
-                     🏟 Матчи: <span className="font-bold">4</span>
-                  </p>
+         <section className="bg-[#0f2145] text-white pt-12 px-4 sm:px-8 md:px-16 overflow-hidden">
+            <div className="custom-container">
+               <h2 className="text-2xl sm:text-4xl font-bold font-russo mb-10 max-md:mb-28 text-center z-20 relative">
+                  Лучший игрок месяца
+               </h2>
+               <div className="mx-auto relative z-10 flex  md:items-end justify-around">
+                  <div className="liquid-bg" />
+                  <div className="py-10 max-md:absolute -top-28 -left-5">
+                     <p className="text-2xl font-medium">Fransisko</p>
+                     <p className="text-7xl max-lg:text-5xl font-russo italic uppercase">
+                        Jurani
+                     </p>
+                     <p className="text-white text-sm mt-2">Midfielders</p>
+                  </div>
+                  <div className="w-2/4 max-lg:w-2/3 max-md:w-4/5 max-sm:w-full h-full mx-auto">
+                     <p className="w-max px-32 absolute -z-10 top-1/2 left-2/5 max-lg:top-1/4 max-md:left-2/5 -translate-x-1/2 -translate-y-1/2 text-[700px] max-xl:text-[600px] max-lg:text-[500px] max-sm:text-[400px] font-russo italic bg-gradient-to-b from-[#fdc52c95] from-30% to-70% to-transparent bg-clip-text text-transparent select-none pointer-events-none">
+                        7
+                     </p>
+                     <Image
+                        className="w-full h-full"
+                        src="/jurani.png"
+                        alt="Лучший игрок"
+                        width={1000}
+                        height={1000}
+                     />
+                  </div>
                </div>
             </div>
          </section>
@@ -225,7 +233,7 @@ export default function Home() {
                                  Futbol primer Equipo
                               </p>
                               <p className="text-2xl font-semibold font-russo italic mb-1">
-                                 La Liga
+                                 Superliga
                               </p>
                               <p className="text font-semibold mb-2">
                                  Matchday {item + 1}
@@ -239,7 +247,7 @@ export default function Home() {
                               <div className="flex items-center gap-2 mt-1">
                                  <HiOutlineLocationMarker className="text-gray-400 text-xl" />
                                  <p className="text-gray-700 max-sm:text-sm">
-                                    Estadio Santiago Bernabeu
+                                    FC Dinamo Stadium
                                  </p>
                               </div>
                            </div>
@@ -280,6 +288,40 @@ export default function Home() {
             </div>
          </div>
 
+         <section className="bg-[#0f2145]">
+            <div className="custom-container pt-10 pb-20">
+               <div className="flex items-end gap-5 mx-4">
+                  <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic text-white">
+                     Players
+                  </h2>
+                  <hr className="bg-[#fdc52c] h-8 w-0.5 border-none" />
+                  <Link
+                     href={"/players"}
+                     className="text-xl max-md:text-base font-medium text-[#fdc52c]"
+                  >
+                     See More
+                  </Link>
+               </div>
+               <div className="mt-10">
+                  <Carousel className="">
+                     <CarouselContent className="">
+                        {[0, 1, 2, 3, 4, 5].map((item: number) => (
+                           <CarouselItem
+                              key={item}
+                              className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                           >
+                              <PlayerCard />
+                           </CarouselItem>
+                        ))}
+                     </CarouselContent>
+
+                     <CarouselPrevious className="max-xl:-left-4 max-sm:hidden" />
+                     <CarouselNext className="max-xl:-right-4 max-sm:hidden" />
+                  </Carousel>
+               </div>
+            </div>
+         </section>
+
          <div className="custom-container mt-10 pb-10">
             <div className="flex items-end gap-5">
                <h2 className="text-4xl max-md:text-2xl font-semibold font-russo italic">
@@ -296,32 +338,7 @@ export default function Home() {
 
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-md:gap-x-2 mt-10 max-md:mt-7">
                {[...Array(4)].map((_, i) => (
-                  <Link
-                     key={i}
-                     href={"#"}
-                     className="relative h-[180px] sm:h-[250px] lg:h-[280px] overflow-hidden group"
-                  >
-                     {/* Фон */}
-                     <Image
-                        src="/hero.png"
-                        alt={`section bg ${i}`}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                     />
-
-                     {/* Затемнение */}
-                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
-
-                     {/* Текст */}
-                     <div className="absolute inset-0 flex flex-col items-start justify-end px-5 py-7 max-sm:py-4 z-10">
-                        <p className="text-white text-xs sm:text-sm">
-                           13 July 2025
-                        </p>
-                        <h3 className="text-white text-xl max-md:text-lg max-sm:text-sm font-semibold font-russo line-clamp-2 mt-1">
-                           History of the Academy
-                        </h3>
-                     </div>
-                  </Link>
+                  <PhotosCard key={i} />
                ))}
             </div>
          </div>

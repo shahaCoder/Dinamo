@@ -24,8 +24,10 @@ const Page = () => {
          <div className="w-full pt-10 pb-20">
             <div className="">
                <div className="flex items-center justify-center gap-1 text-white">
-                  <p className="text-sm max-md:text-xs font-russo">La Liga •</p>
-                  <p className="text-sm max-md:text-xs"> Camp Nou Stadium</p>
+                  <p className="text-sm max-md:text-xs font-russo">
+                     Superliga •
+                  </p>
+                  <p className="text-sm max-md:text-xs">Dinamo Stadium</p>
                </div>
                <p className="text-3xl max-md:text-2xl font-russo text-center italic text-[#fdc52c]">
                   Sunday 27 July

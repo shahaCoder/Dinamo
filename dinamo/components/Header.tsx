@@ -87,7 +87,7 @@ const Header = () => {
                                  className="font-russo text-sm italic"
                                  asChild
                               >
-                                 <Link href="#">Home</Link>
+                                 <Link href="/">Home</Link>
                               </NavigationMenuLink>
                            </NavigationMenuItem>
                            <NavigationMenuItem>

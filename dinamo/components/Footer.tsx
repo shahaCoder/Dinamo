@@ -10,7 +10,9 @@ const Footer = () => {
       <>
          <div className="bg-[#0a1833] py-10">
             <div className="custom-container relative">
-               <h2 className="text-yellow-500 font-russo italic">Main Partners</h2>
+               <h2 className="text-yellow-500 font-russo italic">
+                  Main Partners
+               </h2>
                <div className="bg-yellow-600 w-0.5 h-3/4 absolute z-20 top-10 left-9 max-lg:left-7 max-md:left-5" />
                <div className="flex items-center justify-around mt-5">
                   <Link href={"#"}>
@@ -104,73 +106,34 @@ const Footer = () => {
                   <ul className="space-y-2">
                      <li>
                         <Link
-                           href="#"
+                           href="/"
                            className="hover:text-yellow-600 transition"
                         >
-                           Главная
+                           Home
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="#"
+                           href="/players"
                            className="hover:text-yellow-600 transition"
                         >
-                           Команда
+                           Players
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="#"
+                           href="/players"
                            className="hover:text-yellow-600 transition"
                         >
-                           Матчи
+                           U19
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="#"
+                           href="/players"
                            className="hover:text-yellow-600 transition"
                         >
-                           Клуб
-                        </Link>
-                     </li>
-                  </ul>
-               </div>
-               <div>
-                  <h3 className="text-xl font-semibold mb-3 text-white">
-                     Навигация
-                  </h3>
-                  <ul className="space-y-2">
-                     <li>
-                        <Link
-                           href="#"
-                           className="hover:text-yellow-600 transition"
-                        >
-                           Главная
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           href="#"
-                           className="hover:text-yellow-600 transition"
-                        >
-                           Команда
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           href="#"
-                           className="hover:text-yellow-600 transition"
-                        >
-                           Матчи
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           href="#"
-                           className="hover:text-yellow-600 transition"
-                        >
-                           Клуб
+                           U23
                         </Link>
                      </li>
                   </ul>
@@ -182,10 +145,18 @@ const Footer = () => {
                   <ul className="space-y-2">
                      <li>
                         <Link
-                           href="#"
+                           href="/news"
                            className="hover:text-yellow-600 transition"
                         >
-                           Главная
+                           News
+                        </Link>
+                     </li>
+                     <li>
+                        <Link
+                           href="/photos"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Photos
                         </Link>
                      </li>
                      <li>
@@ -193,30 +164,45 @@ const Footer = () => {
                            href="#"
                            className="hover:text-yellow-600 transition"
                         >
-                           Команда
+                           History
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="#"
+                           href="/schedule"
                            className="hover:text-yellow-600 transition"
                         >
-                           Матчи
+                           Schedule
+                        </Link>
+                     </li>
+                  </ul>
+               </div>
+               <div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                     Навигация
+                  </h3>
+                  <ul className="space-y-2">
+                     <li>
+                        <Link
+                           href="/results"
+                           className="hover:text-yellow-600 transition"
+                        >
+                           Results
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="#"
+                           href="/standing"
                            className="hover:text-yellow-600 transition"
                         >
-                           Клуб
+                           Standing
                         </Link>
                      </li>
                   </ul>
                </div>
             </div>
-
-            <div className="mt-10 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
+            <div className="w-full h-1 my-10 max-md:my-6 bg-gradient-to-r from-[#fdc52c] from-40% to-60% to-[#0474D8]" />
+            <div className="text-center text-gray-500 text-sm">
                © {new Date().getFullYear()} FC Dinamo. Все права защищены.
             </div>
          </footer>

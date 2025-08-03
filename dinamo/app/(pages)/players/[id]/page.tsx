@@ -10,9 +10,9 @@ const Hage = () => {
    return (
       <div className="bg-[#0f2145]">
          <div className="bg-player relative z-10 overflow-hidden">
-            <i className="absolute -z-20 top-1/4 max-md:top-[10%] left-1/2 -translate-x-1/2 -translate-y-1/2 player-name font-extrabold uppercase bg-gradient-to-b from-white/30 from-30% to-70% to-transparent bg-clip-text text-transparent select-none pointer-events-none">
-               Balde
-            </i>
+            <p className="w-max px-20 absolute italic -z-20 top-1/3 max-md:top-1/12 left-1/2 -translate-x-[53%] -translate-y-1/2 player-name font-extrabold uppercase bg-gradient-to-b from-white/30 from-30% to-70% to-transparent bg-clip-text text-transparent select-none pointer-events-none">
+               jurani
+            </p>
             <div className="absolute -z-10 bottom-0 left-0 w-full h-full bg-gradient-to-t from-[#0f2145] to-transparent" />
             <div className="custom-container">
                <div className="flex max-md: items-center justify-between pt-10">
@@ -73,7 +73,7 @@ const Hage = () => {
                               </div>
                               <div className="bg-[#080e1fe6] h-20 p-3">
                                  <p className="max-lg:text-xs font-bold text-center text-white">
-                                    My Top 11 | Balde
+                                    My Top 11 | Jurani
                                  </p>
                               </div>
                            </Link>
@@ -81,30 +81,30 @@ const Hage = () => {
                      </div>
                   </div>
                   <div className="w-1/2 max-lg:w-full flex justify-end">
-                     <div className="w-3/4 max-xl:w-4/5 max-lg:w-full max-lg:flex max-md:flex-col max-lg:items-end relative">
+                     <div className="w-[95%] max-xl:w-4/5 max-lg:w-full max-lg:flex max-md:flex-col max-lg:items-end relative">
                         <Image
-                           className="w-full h-full max-md:w-2/3 max-md:mx-auto object-cover"
-                           src="/03-balde.webp"
+                           className="w-full h-full max-lg:w-2/4 max-md:w-4/5 max-md:mx-auto object-cover"
+                           src="/jurani.png"
                            width={1000}
                            height={1000}
                            alt="logo"
                         />
                         <div className="bg-[#080e1fe6] w-full h-fit py-4 lg:absolute lg:bottom-0 lg:left-0">
                            <div className="">
-                              <p className="text-xs font-bold text-center uppercase text-gray-300">
-                                 Defender
+                              <p className="text-xs font-bold text-center uppercase mb-3 text-gray-300">
+                                 Midfielders
                               </p>
                               <div className="flex justify-center gap-1">
-                                 <p className="text-gray-300 text-3xl font-medium">3 </p>
+                                 <p className="text-gray-300 text-3xl font-medium">7 </p>
                                  <p className="text-xl max-md:text-lg text-white">
-                                    Alejandro{" "}
-                                    <span className="text-3xl max-md:text-2xl font-bold font-russo uppercase">
-                                       Balde
+                                    Fransisko{" "}
+                                    <span className="text-3xl max-md:text-2xl font-bold font-russo uppercase italic">
+                                       jurani
                                     </span>
                                  </p>
                               </div>
                            </div>
-                           <div className="flex items-center justify-around border-t md:hidden border-gray-600 pt-4 mt-4">
+                           <div className="flex items-center justify-around border-t lg:hidden border-gray-600 pt-4 mt-4">
                               <div className="text-center">
                                  <p className="text-[10px] font-bold uppercase text-white">
                                     Dinamo Games
@@ -171,7 +171,7 @@ const Hage = () => {
                                  Full name
                               </p>
                               <p className="text- font-semibold">
-                                 Alejandro Balde
+                                 Fransisko Jurani
                               </p>
                            </div>
                         </div>
@@ -184,7 +184,7 @@ const Hage = () => {
                                  Place of birth
                               </p>
                               <p className="text- font-semibold">
-                                 Barcelona, Spain
+                                 Brazil, Sao Paulo
                               </p>
                            </div>
                         </div>
@@ -196,7 +196,7 @@ const Hage = () => {
                               <p className="text-gray-600 text-sm font-semibold">
                                  Date of birth
                               </p>
-                              <p className="text- font-semibold">18/10/2003</p>
+                              <p className="text- font-semibold">01/10/1996</p>
                            </div>
                         </div>
                         <div className="flex items-center gap-5">
@@ -227,18 +227,18 @@ const Hage = () => {
                      <div className="h-32 overflow-y-scroll">
                         <div className="flex items-center justify-between border-b border-gray-300 py-2">
                            <p className="text-sm font-semibold text-gray-500">
-                              Real Madrid
+                              FC Dinamo
                            </p>
                            <p className="text-sm font-semibold text-gray-500">
-                              2018-
+                              2024-
                            </p>
                         </div>
                         <div className="flex items-center justify-between border-b border-gray-300 py-2">
                            <p className="text-sm font-semibold text-gray-500">
-                              FC Barcelona
+                              FC Paxtakor
                            </p>
                            <p className="text-sm font-semibold text-gray-500">
-                              2017-2018
+                              2020-2024
                            </p>
                         </div>
                         <div className="flex items-center justify-between border-b border-gray-300 py-2">
@@ -246,7 +246,7 @@ const Hage = () => {
                               FC Dinamo
                            </p>
                            <p className="text-sm font-semibold text-gray-500">
-                              2016-2017
+                              2016-2020
                            </p>
                         </div>
                         <div className="flex items-center justify-between py-2">

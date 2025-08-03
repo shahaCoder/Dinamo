@@ -21,8 +21,8 @@ const ResultsCard = () => {
          </div>
          <hr className="w-[0.5px] h-10 bg-gray-200 border-none max-md:hidden" />
          <div className="max-w-28 max-lg:max-w-20 w-full max-md:hidden">
-            <p className="text-2xl max-lg:text-base font-russo italic text-center">
-               La Liga
+            <p className="text-xl max-lg:text-base font-russo italic text-center">
+               Superliga
             </p>
          </div>
          <hr className="w-[0.5px] h-10 bg-gray-300 border-none max-md:hidden" />

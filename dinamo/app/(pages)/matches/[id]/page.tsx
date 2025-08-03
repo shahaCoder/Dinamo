@@ -194,7 +194,7 @@ const Page = () => {
                      </div>
                   </div>
                   <div className="relative z-10 rounded-sm overflow-hidden shadow-md bg-white">
-                     <div className="flex items-center justify-between gap-4 py-2 px-2 border-b border-[#ffffff1a]">
+                     <div className="flex items-center justify-between gap-4 py-2 px-2 border-b border-[#efefef]">
                         <div className="flex items-center gap-4 max-md:gap-2">
                            <div className="rounded-full p-1 text-[#fdc52c] border border-[#fdc52c]">
                               <p className="font-semibold text-sm">88'</p>

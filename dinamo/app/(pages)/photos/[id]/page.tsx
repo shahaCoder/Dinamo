@@ -6,23 +6,21 @@ import { FcGallery } from "react-icons/fc";
 import { HiCamera } from "react-icons/hi";
 import { IoMdTime } from "react-icons/io";
 
-const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
-   const { id } = await params;
-
+const Page = () => {
    return (
       <div className="relative">
          <img
-            className="w-full h-[50vh] absolute opacity-20 -z-10 top-0 left-0 object-cover"
-            src="https://www.fcbarcelona.com/photo-resources/2025/07/31/19ba97cb-a4fc-483a-a05b-b032ba56c977/_MGA8074-1-.jpg?width=2400&height=1050"
+            className="w-full h-[60vh] absolute opacity-20 -z-10 top-0 left-0 object-cover"
+            src="/photo-1.jpg"
             alt="img"
          />
-         <div className="absolute -z-20 top-0 left-0 w-full h-[50vh] bg-[#0f2145]" />
-         <div className="absolute -z-10 top-0 left-0 w-full h-[50vh] gradient" />
-         <div className="absolute -z-10 top-0 left-0 w-full h-[50vh] opacity-[.4] bg-gradient-to-r from-[#154284] to-[#fdc52c]" />
+         <div className="absolute -z-20 top-0 left-0 w-full h-[60vh] bg-[#0f2145]" />
+         <div className="absolute -z-10 top-0 left-0 w-full h-[60vh] gradient" />
+         <div className="absolute -z-10 top-0 left-0 w-full h-[60vh] opacity-[.4] bg-gradient-to-r from-[#154284] to-[#fdc52c]" />
          <div className="custom-container py-16 max-md:py-10">
             <div className="mb-20 max-lg:mb-14 max-md:mb-10">
                <h2 className="text-4xl max-lg:text-3xl font-bold font-russo text-center text-[#fdc52c]">
-                  Photos from the win over FC Seoul
+                  Welcome to FC Dinamo
                </h2>
                <div className="flex items-center justify-around mt-10 max-md:mt-7">
                   <div className="flex items-center gap-1 text-white">

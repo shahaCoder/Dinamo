@@ -18,8 +18,8 @@ const NewCard = () => {
          />
          <div className="mt-3 max-sm:mt-1.5">
             <h3 className="text-lg max-md:text-xs font-russo font-semibold leading-6 max-md:leading-4 tracking-wider line-clamp-3 text-white">
-               Como ninth Italian opponents in the Gamper. Далеко-далеко за
-               словесными горами в стране.
+               Lorem ipsum dolor sit. Далеко-далеко за словесными горами в
+               стране.
             </h3>
          </div>
       </Link>
