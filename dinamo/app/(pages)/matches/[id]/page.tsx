@@ -1,9 +1,16 @@
 import Image from "next/image";
+import { IoIosFootball } from "react-icons/io";
 
 const Page = () => {
    return (
-      <div className="bg-[#0f2145]">
-         <div className="custom-container pt-28 max-lg:pt-16 pb-40 max-lg:pb-28">
+      <div className="bg-[#0f2145] relative z-10">
+         <img
+            className="absolute aspect-[4/2] max-xl:aspect-[3/2] max-sm:aspect-[1/1.5] -z-10 top-0 left-0 w-full object-cover opacity-15"
+            src="https://storage.yandexcloud.net/pfluz/post/1d0a084d-aea2-485c-84a2-df1e80bb84cf-106b1059-7a50-473b-9998-f73068fb7940.jpg"
+            alt=""
+         />
+         <div className="w-full aspect-[4/2] max-xl:aspect-[3/2] max-sm:aspect-[1/1.5] bottom-0-0 left-0 absolute -z-10 bg-gradient-to-t from-[#0f2145] from-20% to-transparent to-60%" />
+         <div className="custom-container pt-28 max-lg:pt-16 pb-40 max-lg:pb-28 hidden">
             <div className="flex flex-col items-center justify-center">
                <p className="text-[#fdc52c] text-3xl max-md:text-2xl max-sm:text-xl font-bold font-russo uppercase">
                   Mon 04 Aug
@@ -86,6 +93,75 @@ const Page = () => {
                </div>
             </div>
          </div>
+         <div className="custom-container pt-28 max-lg:pt-16 pb-40 max-lg:pb-28">
+            <div className="flex gap-5 max-lg:gap-0 justify-between">
+               <div className="w-[40%] mt-6 max-lg:mt-3 flex max-md:flex-col-reverse max-md:items-center justify-end gap-5 max-md:gap-3">
+                  <div className="">
+                     <p className="md:mt-6 text-2xl max-lg:text-xl max-md:text-sm font-bold font-russo italic uppercase max-md:text-center text-white">
+                        FC Dinamo
+                     </p>
+                     <ul className="flex items-center max-md:justify-center gap-2 max-sm:gap-1 flex-wrap max-md:mt-3">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                           <li
+                              className="flex gap-0.5 items-center text-xs text-white"
+                              key={index}
+                           >
+                              <IoIosFootball className="text-[#fdc52c] " />
+                              <p className="italic">85'</p>
+                              <p className="font-russo">Jurani</p>
+                           </li>
+                        ))}
+                     </ul>
+                  </div>
+                  <Image
+                     src="/logo.png"
+                     className="w-20 h-20 max-md:w-16 max-md:h-16"
+                     width={100}
+                     height={100}
+                     alt="Logo"
+                  />
+               </div>
+               <div className="">
+                  <p className="text-sm max-md:text-xs font-bold uppercase text-center text-white">
+                     ft
+                  </p>
+                  <div className="h-fit flex justify-center gap-3 my-2 text-center text-5xl max-lg:text-3xl max-md:text-2xl font-russo font-black text-white bg-gradient-to-t from-[#181733] to-[#2c4481] py-3 px-4 max-lg:px-3 max-lg:py-2 max-sm:px-2 max-sm:py-1">
+                     <p className="">5</p>
+                     <p>-</p>
+                     <p className="">0</p>
+                  </div>
+                  <p className="text-sm max-md:text-xs uppercase text-center text-white">
+                     HT: <span className="font-bold ml-1">2-0</span>
+                  </p>
+               </div>
+               <div className="w-[40%] mt-6 max-lg:mt-3 flex max-md:flex-col max-md:items-center gap-5 max-md:gap-2">
+                  <Image
+                     src="/logo.png"
+                     className="w-20 h-20 max-md:w-16 max-md:h-16"
+                     width={100}
+                     height={100}
+                     alt="Logo"
+                  />
+                  <div className="">
+                     <p className="md:mt-6 text-2xl max-lg:text-xl max-md:text-sm font-bold font-russo italic uppercase max-md:text-center text-white">
+                        FC Paxtakor
+                     </p>
+                     <ul className="flex items-center max-md:justify-center gap-2 max-sm:gap-1 flex-wrap max-md:mt-3">
+                        {Array.from({ length: 0 }).map((_, index) => (
+                           <li
+                              className="flex gap-0.5 items-center text-xs text-white"
+                              key={index}
+                           >
+                              <IoIosFootball className="text-[#fdc52c] " />
+                              <p className="italic">85'</p>
+                              <p className="font-russo">Jurani</p>
+                           </li>
+                        ))}
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
          <div className="bg-[#f8f8f8] mx-4 max-md:mx-0 rounded-2xl">
             <div className="custom-container">
                <div className="max-w-xl mx-auto flex flex-col gap-10 relative z-10 py-10">
@@ -139,8 +215,8 @@ const Page = () => {
                               7
                            </p>
                            <Image
-                              src="/03-Balde.webp"
-                              className="w-full"
+                              className="w-full h-full object-cover"
+                              src="/jurani.png"
                               width={100}
                               height={100}
                               alt="Logo"

@@ -5,16 +5,23 @@ import React from "react";
 
 const Page = () => {
    return (
-      <div className="bg-[#0f2145] relative">
+      <div className="bg-[#0f2145] relative z-10">
          <Image
-            className="absolute top-0 left-0 w-full h-[70vh] max-md:h-[50vh] object-cover"
+            className="absolute -z-10 top-0 left-0 w-full h-[50vh] max-md:h-[30vh] object-cover"
             src="/hero.png"
             width={1000}
             height={1000}
             alt="img"
          />
-         <div className="w-full h-[70vh] max-md:h-[50vh] top-0 left-0 absolute bg-gradient-to-t from-[#0f2145] from-5% to-transparent to-50%"></div>
-         <div className="h-[70vh] max-md:h-[50vh] w-full"></div>
+         <div className="w-full h-[50vh] max-md:h-[30vh] top-0 left-0 absolute -z-10 bg-gradient-to-t from-[#0f2145] from-5% to-transparent to-50%"></div>
+         <div className="w-6 h-60 max-md:w-3 max-md:h absolute -z-10 left-0 top-10 bg-[#154284]" />
+         <div className="w-6 h-60 max-md:w-3 max-md:h absolute -z-10 right-0 top-32 bg-[#fdc52c]" />
+         <div className="h-[50vh] max-md:h-[30vh] w-full flex flex-col items-center justify-center">
+            <p className="text-7xl max-md:text-5xl font-russo text-center text-[#fdc52c]">FC Dinamo</p>
+            <p className="text-5xl max-md:text-3xl font-russo text-center text-white">
+               Schedule this Season
+            </p>
+         </div>
          <div className="bg-white mx-4 max-md:mx-2 rounded-2xl">
             <div className="custom-container py-10">
                <h1 className="text-3xl max-md:text-2xl font-bold font-russo italic uppercase">

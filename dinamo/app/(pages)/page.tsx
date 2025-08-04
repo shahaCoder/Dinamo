@@ -184,7 +184,7 @@ export default function Home() {
                </h2>
                <hr className="bg-[#fdc52c] h-8 w-0.5 border-none" />
                <Link
-                  href={"/news"}
+                  href={"/schedule"}
                   className="text-xl max-md:text-base font-medium text-[#fdc52c]"
                >
                   See More
