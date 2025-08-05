@@ -9,25 +9,6 @@ const Page = () => {
                Latest News
             </h1>
 
-            <div className="flex flex-wrap items-center gap-2 mt-7">
-               {[
-                  "All news",
-                  "Men's football",
-                  "Women's football",
-                  "U-19",
-                  "U-21",
-                  "U-23",
-               ].map((item) => (
-                  <button
-                     key={item}
-                     className="text-xs max-sm:text-[10px] font-bold uppercase px-4 py-2 rounded shadow cursor-pointer whitespace-nowrap
-                   duration-200 ease-in-out bg-white hover:bg-[#0474D8] hover:text-white"
-                  >
-                     {item}
-                  </button>
-               ))}
-            </div>
-
             <div className="">
                <div className="mt-10">
                   <div className="grid">

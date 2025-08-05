@@ -167,7 +167,7 @@ const Header = () => {
                </div>
             </div>
 
-            <div className="w-full h-1 bg-gradient-to-r from-[#fdc52c] from-40% to-60% to-[#0474D8]" />
+            <div className="w-full h-1 bg-gradient-line" />
          </header>
          {isMobileMenuOpen && (
             <div className="fixed top-24 left-0 w-full h-full bg-[#154284] text-white z-40 flex flex-col px-4 py-7 gap-2 sm:hidden">

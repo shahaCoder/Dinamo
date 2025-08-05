@@ -336,7 +336,7 @@ export default function Home() {
                </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-md:gap-x-2 mt-10 max-md:mt-7">
+            <div className="grid grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-2 max-sm:gap-0 mt-10 max-md:mt-7">
                {[...Array(4)].map((_, i) => (
                   <PhotosCard key={i} />
                ))}

@@ -92,7 +92,7 @@ const Page = () => {
                               <ResultsCard key={index} />
                            ))}
                         </div>
-                        <div className="w-full h-2 shadow bg-gradient-to-r from-[#fdc52c] from-40% to-60% to-[#0474D8]" />
+                        <div className="w-full h-2 shadow bg-gradient-line" />
                      </div>
                   ))}
                </div>

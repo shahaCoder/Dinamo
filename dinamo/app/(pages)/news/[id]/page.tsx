@@ -1,3 +1,4 @@
+import CommentsCard from "@/components/children/CommentsCard";
 import NewCard from "@/components/children/NewCard";
 import Image from "next/image";
 import React from "react";
@@ -15,8 +16,8 @@ const Page = () => {
          <div className="bg-white rounded-t-2xl mt-auto px-4">
             <div className="max-w-2xl mx-auto py-10">
                <h2 className="text-4xl max-md:text-3xl max-md:leading-8 font-russo italic bg-gradient-to-r from-[#000428] to-[#004e92] bg-clip-text text-transparent">
-                  Lorem ipsum dolor sit amet consectetur adipisicing. Далеко-далеко за
-                  словесными горами в стране.
+                  Lorem ipsum dolor sit amet consectetur adipisicing.
+                  Далеко-далеко за словесными горами в стране.
                </h2>
                <p className="text-lg max-md:text-base max-sm:text-sm font-light mt-4">
                   The English striker comes to the blaugranes on loan until 30
@@ -45,7 +46,7 @@ const Page = () => {
                <h3 className="text-2xl font-semibold text-[#004e92]">
                   27 July first game
                </h3>
-               <p>
+               <p className="font-light">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
                   porro explicabo rem in quo atque, laborum repellat, ab placeat
                   vel officiis suscipit minima provident! Aperiam ducimus earum
@@ -61,6 +62,35 @@ const Page = () => {
                </div>
             </div>
          </div>
+
+         <div className="bg-white px-4">
+            <div className="max-w-2xl mx-auto py-10">
+               <div className="flex items- gap-4 mb-10">
+                  <Image
+                     className="w-[55px] h-[55px] rounded-full"
+                     src={"/logo.png"}
+                     width={55}
+                     height={55}
+                     alt="logo"
+                  />
+                  <div className="w-full">
+                     <input
+                        className="w-full py-1.5 border-b outline-0 border-black"
+                        type="text"
+                        placeholder="Введите комментарий"
+                     />
+                     <button className="float-right text-sm mt-2 py-1.5 px-5 cursor-pointer bg-[#004e92] text-white">Отправить</button>
+                  </div>
+               </div>
+
+               <div className="flex flex-col gap-10">
+                  {Array.from({ length: 4 }, (_, index) => (
+                     <CommentsCard key={index} />
+                  ))}
+               </div>
+            </div>
+         </div>
+
          <div className="bg-[#0f2145]">
             <div className="custom-container py-10">
                <h2 className="text-4xl max-md:text-3xl max-sm:text-2xl font-russo text-center text-white">

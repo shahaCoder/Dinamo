@@ -201,7 +201,7 @@ const Footer = () => {
                   </ul>
                </div>
             </div>
-            <div className="w-full h-1 my-10 max-md:my-6 bg-gradient-to-r from-[#fdc52c] from-40% to-60% to-[#0474D8]" />
+            <div className="w-full h-1 my-10 max-md:my-6 bg-gradient-line" />
             <div className="text-center text-gray-500 text-sm">
                © {new Date().getFullYear()} FC Dinamo. Все права защищены.
             </div>
