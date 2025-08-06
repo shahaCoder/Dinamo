@@ -1,83 +1,45 @@
 'use client'
 
+import { useForm, FormProvider, useFieldArray } from 'react-hook-form'
 import { useEffect, useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { motion } from 'framer-motion'
+
 import GameCard from '../components/game-card'
 import type { PastMatchProps } from '../components/game-card'
-
-type MatchEvent = {
-  minute: string
-  type: 'goal' | 'substitution' | 'yellow_card' | 'red_card'
-  team: 'home' | 'away'
-  playerName?: string
-  assistName?: string
-  subIn?: string
-  subOut?: string
-}
-
-type FormTranslation = {
-  locale: string
-  opponent: string
-  stadium: string
-  league: string
-  referee: string
-}
-
-type FormMatchProps = {
-  matchDate: string
-  isHomeGame: boolean
-  homeTeamScore: number
-  awayTeamScore: number
-  opponentLogo?: string
-  translations: FormTranslation[]
-  events: MatchEvent[]
-}
+import MatchTranslations from '../components/matchTranslations'
+import MatchEventFields from '../components/matchEventField'
+import { matchSchema, FormMatchProps } from '../lib/validations/matchSchema'
 
 export default function PastMatchForm() {
-  const [formData, setFormData] = useState<FormMatchProps>({
-    matchDate: '',
-    isHomeGame: true,
-    homeTeamScore: 0,
-    awayTeamScore: 0,
-    opponentLogo: '',
-    translations: [
-      { locale: 'ru', opponent: '', stadium: '', league: '', referee: '' },
-      { locale: 'uz', opponent: '', stadium: '', league: '', referee: '' },
-      { locale: 'en', opponent: '', stadium: '', league: '', referee: '' },
-    ],
-    events: [],
-  })
-
   const [data, setData] = useState<PastMatchProps[]>([])
 
-  useEffect(() => {
-    fetch("http://localhost:3000/pastmatches/pastMatches?locale=uz")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
-
-  const [event, setEvent] = useState<MatchEvent>({
-    minute: '',
-    type: 'goal',
-    team: 'home',
-    playerName: '',
-    assistName: '',
-    subIn: '',
-    subOut: '',
+  const methods = useForm<FormMatchProps>({
+    resolver: zodResolver(matchSchema),
+    defaultValues: {
+      matchDate: '',
+      isHomeGame: true,
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      opponentLogo: '',
+      translations: [
+        { locale: 'ru', opponent: '', stadium: '', league: '', referee: '' },
+        { locale: 'uz', opponent: '', stadium: '', league: '', referee: '' },
+        { locale: 'en', opponent: '', stadium: '', league: '', referee: '' },
+      ],
+      events: [],
+    },
   })
 
-  const addEvent = () => {
-    setFormData((prev) => ({
-      ...prev,
-      events: [...prev.events, event],
-    }))
-    setEvent({ minute: '', type: 'goal', team: 'home', playerName: '', assistName: '', subIn: '', subOut: '' })
-  }
+  const { handleSubmit, reset } = methods
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  useEffect(() => {
+    fetch('http://localhost:3000/pastmatches/pastMatches?locale=uz')
+      .then((res) => res.json())
+      .then(setData)
+  }, [])
 
+  const onSubmit = async (formData: FormMatchProps) => {
     const res = await fetch('http://localhost:3000/pastmatches/pastMatches', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -86,114 +48,74 @@ export default function PastMatchForm() {
 
     if (res.ok) {
       alert('Матч успешно добавлен')
+      reset()
     } else {
       alert('Ошибка при добавлении матча')
     }
   }
 
   return (
-    <div>
-      <div className='flex flex-col gap-5 overflow-y-hidden'>
-        {data.map((match, idx) => (
-        <GameCard key={idx} match={match} />
-      ))}
-      </div>
+    <FormProvider {...methods}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-10"
+      >
+        <section className="flex flex-col gap-5">
+          {data.map((match, idx) => (
+            <GameCard key={idx} match={match} />
+          ))}
+        </section>
 
-         <form onSubmit={handleSubmit} className="space-y-4 p-4">
-       <label htmlFor="matchDate">Выберите дату и время</label>
-       <input
-         type="datetime-local"
-         id="matchDate"
-         value={formData.matchDate}
-         onChange={e => setFormData({ ...formData, matchDate: e.target.value })}
-         className="border p-2 w-full"
-         required
-       />
-       <div className="flex gap-4">
-         <input
-           type="number"
-           placeholder="Счёт (наши)"
-           value={formData.homeTeamScore}
-           onChange={e => setFormData({ ...formData, homeTeamScore: +e.target.value })}
-           className="border p-2"
-         />
-         <input
-           type="number"
-           placeholder="Счёт (соперника)"
-           value={formData.awayTeamScore}
-           onChange={e => setFormData({ ...formData, awayTeamScore: +e.target.value })}
-           className="border p-2"
-         />
-       </div>
-       {formData.translations.map((t, idx) => (
-         <div key={t.locale} className="border p-2 rounded bg-gray-50">
-           <p className="font-bold">{'Информация об игре на ' + t.locale.toUpperCase()}</p>
-           <input placeholder={'Название команды соперника на ' + t.locale} className="border p-1 w-full" value={t.opponent} onChange={e => {
-             const copy = [...formData.translations]
-             copy[idx].opponent = e.target.value
-             setFormData({ ...formData, translations: copy })
-           }} />
-           <input placeholder={'Название стадиона на ' + t.locale} className="border p-1 w-full" value={t.stadium} onChange={e => {
-             const copy = [...formData.translations]
-             copy[idx].stadium = e.target.value
-             setFormData({ ...formData, translations: copy })
-           }} />
-           <input placeholder={'Название лиги на ' + t.locale} className="border p-1 w-full" value={t.league} onChange={e => {
-             const copy = [...formData.translations]
-             copy[idx].league = e.target.value
-             setFormData({ ...formData, translations: copy })
-           }} />
-           <input placeholder={'ФИО судьи на ' + t.locale} className="border p-1 w-full" value={t.referee} onChange={e => {
-             const copy = [...formData.translations]
-             copy[idx].referee = e.target.value
-             setFormData({ ...formData, translations: copy })
-           }} />
-         </div>
-       ))}
-       <hr />
-       <p className="font-bold">Добавить событие</p>
-       <div className="grid grid-cols-2 gap-2">
-         <div className='flex flex-col'>
-           <label htmlFor="">Минута на которой произошло событие</label>
-         <input placeholder="10" value={event.minute} onChange={e => setEvent({ ...event, minute: e.target.value })} className="border p-1" />
-         </div>
-         <div className='flex flex-col'>
-           <label htmlFor="">Тип события</label>
-         <select value={event.type} id='type' onChange={e => setEvent({ ...event, type: e.target.value as MatchEvent['type'] })} className="border p-1">
-           <option value="goal">Гол</option>
-           <option value="substitution">Замена</option>
-           <option value="yellow_card">ЖК</option>
-           <option value="red_card">КК</option>
-         </select>
-         </div>
-         <div className='flex flex-col'>
-           <label htmlFor="">Команда из-за которой произошло событие</label>
-           <select value={event.team} onChange={e => setEvent({ ...event, team: e.target.value as MatchEvent['team'] })} className="border p-1">
-           <option value="home">Наша команда</option>
-           <option value="away">Соперник</option>
-         </select>
-         </div>
-         {
-           event.type == 'goal' || event.type == 'yellow_card' || event.type == 'red_card' ? <div className='flex flex-col'>
-           <label htmlFor="">Имя игрока</label>
-           <input placeholder="Игрок" value={event.playerName} onChange={e => setEvent({ ...event, playerName: e.target.value })} className="border p-1" />
-         </div> : null
-         }
-         {
-           event.type == 'goal' && (<input placeholder="Имя игрока который стал ассистом" value={event.assistName} onChange={e => setEvent({ ...event, assistName: e.target.value })} className="border p-1" />)
-         }
-         {
-           event.type == 'substitution' ? <div className='flex flex-col gap-2'><input placeholder="Имя игрока который вышел на поле" value={event.subIn} onChange={e => setEvent({ ...event, subIn: e.target.value })} className="border p-1" /> <input placeholder="Имя игрока которого заменили" value={event.subOut} onChange={e => setEvent({ ...event, subOut: e.target.value })} className="border p-1" /></div> : null
-         }
-       </div>
-       <button type="button" onClick={addEvent} className="bg-blue-500 text-white px-4 py-2 rounded">
-         + Добавить событие
-       </button>
-       <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded w-full mt-4">Создать матч</button>
-     </form>
-    </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-6 p-4 bg-slate-800 rounded-xl border"
+        >
+          <label className="block">
+            Дата и время матча
+            <input
+              type="datetime-local"
+              {...methods.register('matchDate')}
+              className="mt-1 block w-full p-2 rounded bg-slate-700 text-white"
+            />
+            {methods.formState.errors.matchDate && (
+              <p className="text-red-400 text-sm">
+                {methods.formState.errors.matchDate.message}
+              </p>
+            )}
+          </label>
+
+          <div className="flex gap-4">
+            <input
+              type="number"
+              {...methods.register('homeTeamScore', { valueAsNumber: true })}
+              placeholder="Счёт (наши)"
+              className="w-full p-2 rounded bg-slate-700 text-white"
+            />
+            <input
+              type="number"
+              {...methods.register('awayTeamScore', { valueAsNumber: true })}
+              placeholder="Счёт (соперника)"
+              className="w-full p-2 rounded bg-slate-700 text-white"
+            />
+          </div>
+
+          <label className="flex items-center gap-2">
+            <input type="checkbox" {...methods.register('isHomeGame')} />
+            Это домашняя игра?
+          </label>
+
+          <MatchTranslations />
+          <MatchEventFields />
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 hover:bg-green-700 transition text-white px-4 py-2 rounded"
+          >
+            Создать матч
+          </button>
+        </form>
+      </motion.div>
+    </FormProvider>
   )
 }
-
-
-    

@@ -1,42 +1,40 @@
-import * as React from 'react';
-import Link from "next/link";
-import Image from 'next/image';
+'use client'
 
-export interface IAppProps {
-}
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const navItems = [
-  { label: "Игроки", href: "/players" },
-  { label: "Матчи", href: "/games" },
-  { label: "Новости", href: "/news" },
-];
+  { name: 'Игроки', href: '/players' },
+  { name: 'Матчи', href: '/games' },
+  { name: 'Новости', href: '/news' },
+]
 
-export default function Navbar() {
+export default function Sidebar() {
+  const pathname = usePathname()
+
   return (
-    <div className="w-full h-screen p-4 text-white">
-      <div className='flex gap-5'>
-         <Image
-                        className="w-10"
-                        src="/logo.png"
-                        alt="Logo"
-                        width={100}
-                        height={100}
-                        priority
-                     />
-        <h1 className='text-2xl text-center'>Навигация</h1>
-      </div>
-       <ul className="space-y-2 m-2 mt-10">
-        {navItems.map((item) => (
-          <li key={item.href}>
+    <aside className="w-full min-h-screen bg-slate-800 text-slate-200 p-4 border-r border-slate-700">
+      <h2 className="text-xl font-bold mb-6 text-slate-100">Навигация</h2>
+      <nav className="flex flex-col gap-2">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href
+
+          return (
             <Link
+              key={item.name}
               href={item.href}
-              className="block px-3 py-2 rounded-lg hover:bg-[#0371ef] transition-colors"
+              className={`
+                px-4 py-2 rounded-md transition font-medium
+                ${isActive
+                  ? 'bg-slate-700 text-white font-semibold'
+                  : 'text-slate-300 hover:bg-slate-700'}
+              `}
             >
-              {item.label}
+              {item.name}
             </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+          )
+        })}
+      </nav>
+    </aside>
+  )
 }

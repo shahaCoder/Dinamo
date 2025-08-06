@@ -71,37 +71,29 @@ const prisma = new PrismaClient()
 // 	}
 // }
 const GetAllPastMatches = async (req, res) => {
-	const locale = req.query.locale || 'uz';
+	const locale = req.query.locale || 'uz'
 	try {
 		const pastMatches = await prisma.pastMatch.findMany({
-			include: {
-				translations: {
-					where: { locale },
-					select: {
-						opponent: true,
-						stadium: true,
-						referee: true,
-						league: true
-					}
-				},
-				events: true
-			}
-		});
+  include: {
+    translations: true, // ← не фильтруем здесь
+    events: true,
+  },
+});
+
 		const transformed = pastMatches.map(i => {
-			const translation = i.translations[0] || {};
+			const translation = i.translations[0] || {}
 			return {
 				...i,
 				...translation,
 				translations: undefined
-			};
-		});
-		res.json(transformed);
+			}
+		})
+		res.json(transformed)
 	} catch (error) {
-		console.error(error);
-		res.status(500).json({ error: 'Ошибка при получении прошлых матчей' });
+		console.error(error)
+		res.status(500).json({ error: 'Ошибка при получении прошлых матчей' })
 	}
-};
-
+}
 
 const PostPastMatch = async (req, res) => {
 	const {
@@ -112,11 +104,11 @@ const PostPastMatch = async (req, res) => {
 		opponentLogo,
 		events = [],
 		translations = []
-	} = req.body;
+	} = req.body
 
-	const parsedDate = new Date(matchDate);
+	const parsedDate = new Date(matchDate)
 	if (isNaN(parsedDate.getTime())) {
-		return res.status(400).json({ error: 'Некорректная дата' });
+		return res.status(400).json({ error: 'Некорректная дата' })
 	}
 
 	try {
@@ -135,7 +127,7 @@ const PostPastMatch = async (req, res) => {
 						assistName: e.assistName || null,
 						subbedIn: e.subIn || null,
 						subbedOut: e.subOut || null,
-						team: e.team || null,
+						team: e.team || null
 					}))
 				},
 				translations: {
@@ -144,20 +136,18 @@ const PostPastMatch = async (req, res) => {
 						opponent: t.opponent || '',
 						stadium: t.stadium || '',
 						league: t.league || '',
-						referee: t.referee || '',
+						referee: t.referee || ''
 					}))
 				}
 			}
-		});
+		})
 
-		res.json(pastMatch);
+		res.json(pastMatch)
 	} catch (error) {
-		console.log(error);
-		res.status(500).json({ error: 'Ошибка при создании матча' });
+		console.log(error)
+		res.status(500).json({ error: 'Ошибка при создании матча' })
 	}
-};
-
-
+}
 
 const pastMatchDelete = async (req, res) => {
 	try {
@@ -259,101 +249,191 @@ const pastMatchDelete = async (req, res) => {
 // 		res.status(500).json({ error: 'Не удалось внести изменения' })
 // 	}
 // }
+// const updatePastMatch = async (req, res) => {
+// 	try {
+// 		const id = parseInt(req.params.id, 10)
+// 		if (isNaN(id)) return res.status(400).json({ error: 'Некорректный ID' })
+
+// 		const pastMatch = await prisma.pastMatch.findUnique({ where: { id } })
+// 		if (!pastMatch) {
+// 			return res.status(404).json({ error: 'Игра не найдена' })
+// 		}
+
+// 		const {
+// 			matchDate,
+// 			isHomeGame,
+// 			homeTeamScore,
+// 			awayTeamScore,
+// 			opponentLogo,
+// 			translations = [],
+// 			events = []
+// 		} = req.body
+
+// 		// Очистка undefined
+// 		const matchData = {
+// 			matchDate,
+// 			isHomeGame,
+// 			homeTeamScore,
+// 			awayTeamScore,
+// 			opponentLogo
+// 		}
+// 		const cleanData = Object.fromEntries(
+// 			Object.entries(matchData).filter(([_, v]) => v !== undefined)
+// 		)
+
+// 		await prisma.pastMatch.update({ where: { id }, data: cleanData })
+
+// 		// Обновление событий
+// 		await prisma.pastMatchEvent.deleteMany({ where: { pastMatchId: id } })
+
+// 		if (events.length > 0) {
+// 			await prisma.pastMatchEvent.createMany({
+// 				data: events.map(e => ({
+// 					pastMatchId: id,
+// 					minute: e.minute,
+// 					type: e.type,
+// 					playerName: e.playerName?.trim() || undefined,
+// 					assistName: e.assistName?.trim() || undefined,
+// 					subIn: e.subIn?.trim() || undefined,
+// 					subOut: e.subOut?.trim() || undefined,
+// 					team: e.team
+// 				}))
+// 			})
+// 		}
+
+// 		// Обновление переводов
+// 		for (const t of translations) {
+// 			if (!t.locale) continue
+
+// 			const existing = await prisma.pastMatchTranslation.findUnique({
+// 				where: {
+// 					pastMatchId_locale: {
+// 						pastMatchId: id,
+// 						locale: t.locale
+// 					}
+// 				}
+// 			})
+
+// 			if (existing) {
+// 				await prisma.pastMatchTranslation.update({
+// 					where: { id: existingTranslation.id },
+// 					data: {
+// 						...(t.hasOwnProperty('opponent') && { opponent: t.opponent }),
+// 						...(t.hasOwnProperty('stadium') && { stadium: t.stadium }),
+// 						...(t.hasOwnProperty('referee') && { referee: t.referee }),
+// 						...(t.hasOwnProperty('league') && { league: t.league })
+// 					}
+// 				})
+// 			} else {
+// 				await prisma.pastMatchTranslation.create({
+// 					data: {
+// 						pastMatchId: id,
+// 						locale: t.locale,
+// 						opponent: t.opponent || '',
+// 						stadium: t.stadium || '',
+// 						referee: t.referee || '',
+// 						league: t.league || ''
+// 					}
+// 				})
+// 			}
+// 		}
+
+// 		res.json({ message: 'Игра успешно обновлена' })
+// 	} catch (error) {
+// 		console.error(error)
+// 		res.status(500).json({ error: 'Не удалось внести изменения' })
+// 	}
+// }
 const updatePastMatch = async (req, res) => {
-	try {
-		const id = parseInt(req.params.id, 10);
-		if (isNaN(id)) return res.status(400).json({ error: 'Некорректный ID' });
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id)) return res.status(400).json({ error: 'Некорректный ID' });
 
-		const pastMatch = await prisma.pastMatch.findUnique({ where: { id } });
-		if (!pastMatch) {
-			return res.status(404).json({ error: 'Игра не найдена' });
-		}
+    const pastMatch = await prisma.pastMatch.findUnique({ where: { id } });
+    if (!pastMatch) {
+      return res.status(404).json({ error: 'Игра не найдена' });
+    }
 
-		const {
-			matchDate,
-			isHomeGame,
-			homeTeamScore,
-			awayTeamScore,
-			opponentLogo,
-			translations = [],
-			events = []
-		} = req.body;
+    const {
+      matchDate,
+      isHomeGame,
+      homeTeamScore,
+      awayTeamScore,
+      opponentLogo,
+      translations = [],
+      events = []
+    } = req.body;
 
-		// Удаляем undefined поля
-		const matchData = {
-			matchDate,
-			isHomeGame,
-			homeTeamScore,
-			awayTeamScore,
-			opponentLogo
-		};
-		const cleanData = Object.fromEntries(
-			Object.entries(matchData).filter(([_, v]) => v !== undefined)
-		);
+    const matchData = {
+      matchDate,
+      isHomeGame,
+      homeTeamScore,
+      awayTeamScore,
+      opponentLogo
+    };
 
-		// Обновляем основную таблицу
-		await prisma.pastMatch.update({
-			where: { id },
-			data: cleanData
-		});
+    const cleanData = Object.fromEntries(
+      Object.entries(matchData).filter(([_, v]) => v !== undefined)
+    );
 
-		// Удаляем старые события и создаём заново
-		await prisma.matchEvent.deleteMany({ where: { pastMatchId: id } });
+    await prisma.pastMatch.update({
+      where: { id },
+      data: cleanData
+    });
 
-		if (events.length > 0) {
-			await prisma.matchEvent.createMany({
-				data: events.map(e => ({
-					pastMatchId: id,
-					minute: e.minute,
-					type: e.type,
-					playerName: e.playerName,
-					assistName: e.assistName || null,
-					subIn: e.subIn || null,
-					subOut: e.subOut || null,
-					team: e.team || null
-				}))
-			});
-		}
+    await prisma.pastMatchEvent.deleteMany({ where: { pastMatchId: id } });
 
-		// Обновляем переводы
-		for (const t of translations) {
-			if (!t.locale) continue;
-			const existingTranslation = await prisma.pastMatchTranslation.findFirst({
-				where: { pastMatchId: id, locale: t.locale }
-			});
-			if (existingTranslation) {
-				await prisma.pastMatchTranslation.update({
-					where: { id: existingTranslation.id },
-					data: {
-						...(t.opponent && { opponent: t.opponent }),
-						...(t.stadium && { stadium: t.stadium }),
-						...(t.referee && { referee: t.referee }),
-						...(t.league && { league: t.league })
-					}
-				});
-			} else {
-				await prisma.pastMatchTranslation.create({
-					data: {
-						locale: t.locale,
-						opponent: t.opponent || '',
-						stadium: t.stadium || '',
-						referee: t.referee || '',
-						league: t.league || '',
-						pastMatch: { connect: { id } }
-					}
-				});
-			}
-		}
+    if (events.length > 0) {
+      await prisma.pastMatchEvent.createMany({
+        data: events.map(e => ({
+          pastMatchId: id,
+          minute: e.minute,
+          type: e.type,
+          playerName: e.playerName || '',
+          assistName: e.assistName || '',
+          subbedIn: e.subIn || '',
+          subbedOut: e.subOut || '',
+          team: e.team || ''
+        }))
+      });
+    }
 
-		res.json({ message: 'Игра успешно обновлена' });
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ error: 'Не удалось внести изменения' });
-	}
+    for (const t of translations) {
+      if (!t.locale) continue;
+      const existingTranslation = await prisma.pastMatchTranslation.findFirst({
+        where: { pastMatchId: id, locale: t.locale }
+      });
+
+      if (existingTranslation) {
+        await prisma.pastMatchTranslation.update({
+          where: { id: existingTranslation.id },
+          data: {
+            opponent: t.opponent,
+            stadium: t.stadium,
+            referee: t.referee,
+            league: t.league
+          }
+        });
+      } else {
+        await prisma.pastMatchTranslation.create({
+          data: {
+            pastMatchId: id,
+            locale: t.locale,
+            opponent: t.opponent || '',
+            stadium: t.stadium || '',
+            referee: t.referee || '',
+            league: t.league || ''
+          }
+        });
+      }
+    }
+
+    res.json({ message: 'Игра успешно обновлена' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Не удалось внести изменения' });
+  }
 };
-
-
-
 
 module.exports = {
 	PostPastMatch,
