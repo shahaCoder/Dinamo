@@ -50,6 +50,7 @@ const Page = () => {
                         </p>
                      </div>
                   </div>
+                  
                   {ChageAvatar ? (
                      <div className="px-9 py-4 flex flex-col items-center">
                         <h3 className="text-sm font-russo uppercase">
